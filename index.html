@@ -19,6 +19,7 @@
     <nav class="nav-links" aria-label="Main navigation">
       <a href="#problem" data-i18n="navProblem">Ping Problem</a>
       <a href="#request" data-i18n="navRequest">Server Request</a>
+      <a href="#simulator" data-i18n="navSimulator">FPS Simulator</a>
       <a href="#settings" data-i18n="navSettings">Settings</a>
       <a href="#community" data-i18n="navCommunity">Community</a>
     </nav>
@@ -49,20 +50,22 @@
           <span class="radar-dot dot-tj"></span>
           <span class="radar-dot dot-kg"></span>
           <span class="radar-dot dot-tm"></span>
-          <span class="operator operator-ghost" aria-hidden="true">
-            <span class="operator-icon masked"></span>
-            <span class="operator-label">Ghost</span>
-          </span>
-          <span class="operator operator-valeria" aria-hidden="true">
-            <span class="operator-icon tactical"></span>
-            <span class="operator-label">Valeria</span>
-          </span>
         </div>
         <div class="signal-card">
           <span data-i18n="signalRoute">Current Route</span>
           <strong data-i18n="signalPing">High Ping</strong>
           <small data-i18n="signalServers">EU / Middle East servers</small>
         </div>
+      </div>
+      <div class="patrol-lane" aria-hidden="true">
+        <span class="runner runner-ghost">
+          <span class="runner-icon masked"></span>
+          <span class="runner-label">Ghost</span>
+        </span>
+        <span class="runner runner-valeria">
+          <span class="runner-icon tactical"></span>
+          <span class="runner-label">Valeria</span>
+        </span>
       </div>
     </section>
 
@@ -77,18 +80,133 @@
     <section class="section request-section" id="request">
       <div class="section-heading">
         <p class="eyebrow" data-i18n="requestEyebrow">Server Request</p>
-        <h2 data-i18n="requestTitle">Copy the message and send it as feedback.</h2>
+        <h2 data-i18n="requestTitle">Copy the English message and send it as feedback.</h2>
       </div>
       <div class="copy-box">
-        <p id="server-request-text" data-i18n="serverRequestText">Call of Duty needs Central Asia servers. Uzbekistan, Kazakhstan, Tajikistan, Kyrgyzstan and Turkmenistan players are playing with very high ping. Please add Kazakhstan/Uzbekistan server support.</p>
+        <p id="server-request-text">Call of Duty needs Central Asia servers. Uzbekistan, Kazakhstan, Tajikistan, Kyrgyzstan and Turkmenistan players are playing with very high ping. Please add Kazakhstan/Uzbekistan server support.</p>
         <button class="btn btn-primary" type="button" data-copy-request data-i18n="copyRequest">Copy Request</button>
       </div>
       <p class="copy-status" role="status" aria-live="polite"></p>
     </section>
 
+    <section class="section send-section" id="send-request">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="sendEyebrow">Where to send this request</p>
+        <h2 data-i18n="sendTitle">Post it where the game team can see it.</h2>
+      </div>
+      <div class="send-grid">
+        <article class="send-card">
+          <span>X</span>
+          <p data-i18n="sendX">Post the copied request and tag official Call of Duty or support accounts.</p>
+        </article>
+        <article class="send-card">
+          <span>Instagram</span>
+          <p data-i18n="sendInstagram">Share it in comments or stories when server and ping topics are discussed.</p>
+        </article>
+        <article class="send-card">
+          <span>Activision Support</span>
+          <p data-i18n="sendSupport">Use support feedback channels and paste the English request clearly.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section simulator-section" id="simulator">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="simulatorEyebrow">Warzone FPS Simulator</p>
+        <h2 data-i18n="simulatorTitle">Choose your PC parts and see estimated Warzone FPS.</h2>
+      </div>
+      <div class="simulator-card">
+        <div class="simulator-controls">
+          <label>
+            <span data-i18n="deviceType">Device Type</span>
+            <select id="device-type">
+              <option value="desktop">Desktop</option>
+              <option value="laptop">Laptop</option>
+            </select>
+          </label>
+          <label>
+            <span>GPU</span>
+            <select id="gpu">
+              <option value="rtx3050Laptop">RTX 3050 Laptop</option>
+              <option value="rtx4050Laptop">RTX 4050 Laptop</option>
+              <option value="rtx4060Laptop">RTX 4060 Laptop</option>
+              <option value="rtx3060">RTX 3060 12GB</option>
+              <option value="rtx3060Ti">RTX 3060 Ti</option>
+              <option value="rtx4060">RTX 4060</option>
+              <option value="rtx4060Ti">RTX 4060 Ti</option>
+              <option value="rtx4070">RTX 4070</option>
+              <option value="rtx4070Super">RTX 4070 Super</option>
+              <option value="rtx5070">RTX 5070</option>
+            </select>
+          </label>
+          <label>
+            <span>CPU</span>
+            <select id="cpu">
+              <option value="r5600">Ryzen 5 5600</option>
+              <option value="r7500f">Ryzen 5 7500F</option>
+              <option value="r7435hs">Ryzen 7 7435HS</option>
+              <option value="i512400f">i5-12400F</option>
+              <option value="i513420h">i5-13420H</option>
+              <option value="i514600kf">i5-14600KF</option>
+              <option value="r7800x3d">Ryzen 7 7800X3D</option>
+            </select>
+          </label>
+          <label>
+            <span>RAM</span>
+            <select id="ram">
+              <option value="16">16GB</option>
+              <option value="32">32GB</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="simResolution">Resolution</span>
+            <select id="resolution">
+              <option value="1080">1080p</option>
+              <option value="1440">1440p</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="graphics">Graphics</span>
+            <select id="graphics">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+          <label>
+            <span>DLSS</span>
+            <select id="dlss">
+              <option value="off">Off</option>
+              <option value="quality">Quality</option>
+              <option value="balanced">Balanced</option>
+              <option value="performance">Performance</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="frameGeneration">Frame Generation</span>
+            <select id="frame-generation">
+              <option value="off">Off</option>
+              <option value="on">On</option>
+            </select>
+          </label>
+        </div>
+        <div class="fps-result">
+          <span data-i18n="estimatedFps">Estimated FPS</span>
+          <strong id="fps-range">90-120 FPS</strong>
+          <div class="fps-breakdown" aria-label="FPS by graphics preset">
+            <p><span>Low</span><strong id="fps-low">120-150</strong></p>
+            <p><span>Medium</span><strong id="fps-medium">100-130</strong></p>
+            <p><span>High</span><strong id="fps-high">80-110</strong></p>
+          </div>
+          <p class="sim-warning" id="framegen-warning" data-i18n="framegenWarning">Frame Generation works only on RTX 40/50 series GPUs.</p>
+          <p class="sim-disclaimer" data-i18n="fpsDisclaimer">This is an estimate, real FPS depends on map, driver, settings, laptop power limit and temperature.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="settings">
       <div class="section-heading">
-        <p class="eyebrow" data-i18n="settingsEyebrow">Best Warzone Settings</p>
+        <p class="eyebrow" data-i18n="settingsEyebrow">Recommended quick settings</p>
         <h2 data-i18n="settingsTitle">Fast, clean settings for competitive play.</h2>
       </div>
       <div class="settings-grid">
