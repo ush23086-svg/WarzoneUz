@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Warzone Uzbekistan community page for Central Asia players requesting better servers and lower ping.">
+  <meta name="description" content="Warzone Uzbekistan — Central Asia players need better servers and lower ping.">
+  <meta property="og:title" content="Warzone Uzbekistan">
+  <meta property="og:description" content="Warzone Uzbekistan — Central Asia players need better servers and lower ping.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ush23086-svg.github.io/WarzoneUz/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Warzone Uzbekistan">
+  <meta name="twitter:description" content="Warzone Uzbekistan — Central Asia players need better servers and lower ping.">
   <title>Warzone Uzbekistan</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23070a08'/%3E%3Cpath d='M10 16h8l5 25 6-25h7l6 25 5-25h7l-8 32h-8l-6-22-6 22h-8L10 16z' fill='%2335f06f'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -20,6 +28,8 @@
       <a href="#problem" data-i18n="navProblem">Ping Problem</a>
       <a href="#request" data-i18n="navRequest">Server Request</a>
       <a href="#simulator" data-i18n="navSimulator">FPS Simulator</a>
+      <a href="#loadout" data-i18n="navLoadout">Loadout</a>
+      <a href="#ping-report" data-i18n="navReport">Ping Report</a>
       <a href="#settings" data-i18n="navSettings">Settings</a>
       <a href="#community" data-i18n="navCommunity">Community</a>
     </nav>
@@ -201,6 +211,213 @@
           <p class="sim-warning" id="framegen-warning" data-i18n="framegenWarning">Frame Generation works only on RTX 40/50 series GPUs.</p>
           <p class="sim-disclaimer" data-i18n="fpsDisclaimer">This is an estimate, real FPS depends on map, driver, settings, laptop power limit and temperature.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="section loadout-section" id="loadout">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="loadoutEyebrow">Meta Loadout Analyzer</p>
+        <h2 data-i18n="loadoutTitle">Build a sample loadout and estimate its effectiveness.</h2>
+      </div>
+      <div class="tool-card loadout-card">
+        <div class="tool-controls">
+          <label>
+            <span data-i18n="weaponCategory">Weapon category</span>
+            <select id="weapon-category">
+              <option>Assault Rifle</option>
+              <option>SMG</option>
+              <option>LMG</option>
+              <option>Sniper</option>
+              <option>Battle Rifle</option>
+              <option>Marksman Rifle</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="weaponName">Weapon name</span>
+            <input id="weapon-name" type="text" placeholder="Example: Custom AR">
+          </label>
+          <label>
+            <span data-i18n="playstyle">Playstyle</span>
+            <select id="playstyle">
+              <option value="close">Close Range</option>
+              <option value="mid">Mid Range</option>
+              <option value="long">Long Range</option>
+              <option value="ranked">Ranked</option>
+              <option value="resurgence">Resurgence</option>
+              <option value="bigmap">Warzone Big Map</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="sampleLoadout">Sample loadout</span>
+            <select id="preset-loadout">
+              <option value="">Custom</option>
+              <option value="balancedAr">Balanced AR</option>
+              <option value="closeSmg">Close Range SMG</option>
+              <option value="longSniper">Long Range Sniper</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="attachment-grid">
+          <label><span>Muzzle</span><input data-attachment="Muzzle" type="text"></label>
+          <label><span>Barrel</span><input data-attachment="Barrel" type="text"></label>
+          <label><span>Optic</span><input data-attachment="Optic" type="text"></label>
+          <label><span>Stock</span><input data-attachment="Stock" type="text"></label>
+          <label><span>Underbarrel</span><input data-attachment="Underbarrel" type="text"></label>
+          <label><span>Magazine</span><input data-attachment="Magazine" type="text"></label>
+          <label><span>Rear Grip</span><input data-attachment="Rear Grip" type="text"></label>
+          <label><span>Ammunition</span><input data-attachment="Ammunition" type="text"></label>
+          <label><span>Laser</span><input data-attachment="Laser" type="text"></label>
+        </div>
+        <p class="tool-note" id="attachment-note" data-i18n="attachmentNote">Use up to 5 attachments. Extra fields are ignored.</p>
+
+        <div class="slider-grid">
+          <label><span>Damage</span><input id="stat-damage" type="range" min="1" max="10" value="7"><output>7</output></label>
+          <label><span>Range</span><input id="stat-range" type="range" min="1" max="10" value="7"><output>7</output></label>
+          <label><span>Recoil Control</span><input id="stat-recoil" type="range" min="1" max="10" value="7"><output>7</output></label>
+          <label><span>Mobility</span><input id="stat-mobility" type="range" min="1" max="10" value="6"><output>6</output></label>
+          <label><span>ADS Speed</span><input id="stat-ads" type="range" min="1" max="10" value="6"><output>6</output></label>
+          <label><span>Bullet Velocity</span><input id="stat-velocity" type="range" min="1" max="10" value="7"><output>7</output></label>
+          <label><span>Magazine Size</span><input id="stat-mag" type="range" min="1" max="10" value="7"><output>7</output></label>
+        </div>
+
+        <div class="loadout-result">
+          <div>
+            <span data-i18n="effectiveness">Estimated Effectiveness</span>
+            <strong id="effectiveness-score">78%</strong>
+          </div>
+          <div>
+            <span data-i18n="metaTier">Meta Tier</span>
+            <strong id="meta-tier">B Tier</strong>
+          </div>
+        </div>
+
+        <div class="tool-actions">
+          <button class="btn btn-primary" type="button" id="generate-code" data-i18n="generateCode">Generate Code</button>
+          <button class="btn btn-secondary" type="button" id="save-loadout" data-i18n="saveLoadout">Save My Loadout</button>
+          <button class="btn btn-secondary" type="button" id="copy-loadout" data-i18n="copyLoadout">Copy Loadout</button>
+          <button class="btn btn-secondary" type="button" id="copy-code" data-i18n="copyCode">Copy Code</button>
+          <button class="btn btn-secondary" type="button" id="copy-comment" data-i18n="copyComment">Copy Comment for Telegram/X</button>
+        </div>
+        <label class="code-box">
+          <span data-i18n="importCode">Import Code</span>
+          <textarea id="loadout-code" rows="3" placeholder="Paste loadout code here"></textarea>
+        </label>
+        <p class="tool-note" data-i18n="loadoutDisclaimer">Scores are estimates. Real performance depends on game updates, recoil skill, attachments, platform, FPS, ping and playstyle.</p>
+        <div class="saved-loadouts">
+          <h3 data-i18n="savedLoadouts">My Saved Loadouts</h3>
+          <div id="saved-loadouts-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section report-section" id="ping-report">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="reportEyebrow">Ping Report Generator</p>
+        <h2 data-i18n="reportTitle">Generate a clear English ping report.</h2>
+      </div>
+      <div class="tool-card report-card">
+        <div class="tool-controls">
+          <label><span data-i18n="country">Country</span><input id="report-country" type="text" value="Uzbekistan"></label>
+          <label><span data-i18n="city">City</span><input id="report-city" type="text" value="Samarkand"></label>
+          <label>
+            <span>Platform</span>
+            <select id="report-platform">
+              <option>PC</option>
+              <option>PS</option>
+              <option>Xbox</option>
+            </select>
+          </label>
+          <label><span data-i18n="currentPing">Current ping</span><input id="report-ping" type="text" value="180-250 ms"></label>
+          <label>
+            <span data-i18n="serverRoute">Server route</span>
+            <select id="report-route">
+              <option>EU</option>
+              <option>Middle East</option>
+              <option>Other</option>
+            </select>
+          </label>
+        </div>
+        <div class="generated-text" id="ping-report-output">I am from Samarkand, Uzbekistan. My ping in Warzone is usually 180-250 ms. Central Asia players need closer servers.</div>
+        <div class="tool-actions">
+          <button class="btn btn-primary" type="button" data-copy-target="ping" data-i18n="copyPingReport">Copy Ping Report</button>
+          <button class="btn btn-secondary" type="button" data-copy-target="pingX" data-i18n="copyForX">Copy for X</button>
+          <button class="btn btn-secondary" type="button" data-copy-target="pingInstagram" data-i18n="copyForInstagram">Copy for Instagram</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section comments-section" id="comments">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="commentsEyebrow">Copy Comments</p>
+        <h2 data-i18n="commentsTitle">Ready English templates for posts and support messages.</h2>
+      </div>
+      <div class="comment-grid">
+        <article class="comment-card">
+          <span data-i18n="shortComment">Short comment</span>
+          <p data-template="short">Central Asia players need closer Warzone servers. Uzbekistan, Kazakhstan, Kyrgyzstan, Tajikistan and Turkmenistan are playing with very high ping.</p>
+          <button class="btn btn-secondary" type="button" data-copy-template="short" data-i18n="copy">Copy</button>
+        </article>
+        <article class="comment-card">
+          <span data-i18n="mediumComment">Medium comment</span>
+          <p data-template="medium">Please add Central Asia server support for Warzone. Players from Uzbekistan, Kazakhstan, Kyrgyzstan, Tajikistan and Turkmenistan are often routed to EU or Middle East servers with high ping.</p>
+          <button class="btn btn-secondary" type="button" data-copy-template="medium" data-i18n="copy">Copy</button>
+        </article>
+        <article class="comment-card">
+          <span data-i18n="politeComment">Angry but polite comment</span>
+          <p data-template="polite">We love the game, but playing Warzone with 180-250 ms ping in Central Asia is frustrating. Please give our region closer servers or better routing.</p>
+          <button class="btn btn-secondary" type="button" data-copy-template="polite" data-i18n="copy">Copy</button>
+        </article>
+        <article class="comment-card">
+          <span data-i18n="supportComment">Official support message</span>
+          <p data-template="support">Hello, I am requesting better server support for Central Asia. Warzone players from Uzbekistan, Kazakhstan, Kyrgyzstan, Tajikistan and Turkmenistan are often routed to distant servers and experience very high ping.</p>
+          <button class="btn btn-secondary" type="button" data-copy-template="support" data-i18n="copy">Copy</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section map-section" id="server-map">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="mapEyebrow">Central Asia Server Map</p>
+        <h2 data-i18n="mapTitle">No nearby Warzone server.</h2>
+      </div>
+      <div class="map-card">
+        <div class="region-map" aria-label="Central Asia card map">
+          <span class="country uz">Uzbekistan</span>
+          <span class="country kz">Kazakhstan</span>
+          <span class="country kg">Kyrgyzstan</span>
+          <span class="country tj">Tajikistan</span>
+          <span class="country tm">Turkmenistan</span>
+        </div>
+        <p data-i18n="mapText">Central Asia players are routed to EU / Middle East servers.</p>
+      </div>
+    </section>
+
+    <section class="section qr-section" id="telegram-qr">
+      <div class="section-heading">
+        <p class="eyebrow">Telegram</p>
+        <h2 data-i18n="qrTitle">Scan QR to join Telegram.</h2>
+      </div>
+      <div class="qr-card">
+        <div class="qr-placeholder" aria-label="Telegram QR placeholder">
+          <span></span><span></span><span></span><span></span>
+          <strong>WZ</strong>
+        </div>
+        <a class="btn btn-primary" href="https://t.me/Warzone_uzbekistan" target="_blank" rel="noreferrer" data-i18n="openTelegram">Open Telegram</a>
+      </div>
+    </section>
+
+    <section class="section roadmap-section" id="roadmap">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="roadmapEyebrow">Roadmap</p>
+        <h2 data-i18n="roadmapTitle">What this community is building next.</h2>
+      </div>
+      <div class="roadmap-grid">
+        <article data-i18n="roadmapCommunity">Build Central Asia Warzone community</article>
+        <article data-i18n="roadmapReports">Collect ping reports</article>
+        <article data-i18n="roadmapCampaign">Share server request campaign</article>
+        <article data-i18n="roadmapTelegram">Grow Telegram squad</article>
+        <article data-i18n="roadmapHelp">Help players find best FPS/settings/loadouts</article>
       </div>
     </section>
 

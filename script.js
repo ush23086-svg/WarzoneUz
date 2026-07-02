@@ -6,6 +6,8 @@ const translations = {
     navProblem: "Ping Muammosi",
     navRequest: "Server So‘rovi",
     navSimulator: "FPS Simulator",
+    navLoadout: "Loadout",
+    navReport: "Ping Report",
     navSettings: "Sozlamalar",
     navCommunity: "Community",
     heroEyebrow: "Central Asia Squad Network",
@@ -35,7 +37,51 @@ const translations = {
     frameGeneration: "Frame Generation",
     estimatedFps: "Estimated FPS",
     framegenWarning: "Frame Generation faqat RTX 40/50 series GPUlarda ishlaydi.",
-    fpsDisclaimer: "Bu taxminiy hisob, real FPS map, driver, settings, laptop power limit va temperaturega bog‘liq.",
+    fpsDisclaimer: "Bu taxminiy hisob, real FPS map, driver, settings, laptop power limit, temperature va pingga bog‘liq.",
+    loadoutEyebrow: "Meta Loadout Analyzer",
+    loadoutTitle: "Sample loadout yig‘ing va taxminiy effectivenessni ko‘ring.",
+    weaponCategory: "Weapon category",
+    weaponName: "Weapon name",
+    playstyle: "Playstyle",
+    sampleLoadout: "Sample loadout",
+    attachmentNote: "5 tagacha attachment ishlating. Ortiqcha fieldlar hisobga olinmaydi.",
+    effectiveness: "Estimated Effectiveness",
+    metaTier: "Meta Tier",
+    generateCode: "Code yaratish",
+    saveLoadout: "Loadoutni saqlash",
+    copyLoadout: "Loadoutni nusxalash",
+    copyCode: "Codeni nusxalash",
+    copyComment: "Telegram/X uchun comment",
+    importCode: "Import Code",
+    loadoutDisclaimer: "Score taxminiy. Real performance game updates, recoil skill, attachments, platform, FPS, ping va playstylega bog‘liq.",
+    savedLoadouts: "Saqlangan loadoutlarim",
+    reportEyebrow: "Ping Report Generator",
+    reportTitle: "Aniq English ping report yarating.",
+    country: "Country",
+    city: "City",
+    currentPing: "Current ping",
+    serverRoute: "Server route",
+    copyPingReport: "Ping reportni nusxalash",
+    copyForX: "X uchun nusxalash",
+    copyForInstagram: "Instagram uchun nusxalash",
+    commentsEyebrow: "Copy Comments",
+    commentsTitle: "Post va support uchun tayyor English template’lar.",
+    shortComment: "Short comment",
+    mediumComment: "Medium comment",
+    politeComment: "Angry but polite comment",
+    supportComment: "Official support message",
+    copy: "Copy",
+    mapEyebrow: "Central Asia Server Map",
+    mapTitle: "Yaqin Warzone server yo‘q.",
+    mapText: "Central Asia players EU / Middle East serverlariga route qilinadi.",
+    qrTitle: "Telegramga qo‘shilish uchun QR scan qiling.",
+    roadmapEyebrow: "Roadmap",
+    roadmapTitle: "Bu community keyin nimalarni quradi.",
+    roadmapCommunity: "Central Asia Warzone community qurish",
+    roadmapReports: "Ping reportlarni yig‘ish",
+    roadmapCampaign: "Server request campaign ulashish",
+    roadmapTelegram: "Telegram squadni o‘stirish",
+    roadmapHelp: "Playerlarga eng yaxshi FPS/settings/loadout topishda yordam berish",
     settingsEyebrow: "Recommended quick settings",
     settingsTitle: "Competitive o‘yin uchun tez va toza sozlamalar.",
     settingDisplayLabel: "Display",
@@ -56,6 +102,8 @@ const translations = {
     navProblem: "Проблема пинга",
     navRequest: "Запрос серверов",
     navSimulator: "FPS симулятор",
+    navLoadout: "Loadout",
+    navReport: "Ping Report",
     navSettings: "Настройки",
     navCommunity: "Сообщество",
     heroEyebrow: "Central Asia Squad Network",
@@ -85,7 +133,51 @@ const translations = {
     frameGeneration: "Frame Generation",
     estimatedFps: "Примерный FPS",
     framegenWarning: "Frame Generation работает только на RTX 40/50 series GPU.",
-    fpsDisclaimer: "Это оценка: реальный FPS зависит от карты, драйвера, настроек, power limit ноутбука и температуры.",
+    fpsDisclaimer: "Это оценка: реальный FPS зависит от карты, драйвера, настроек, power limit ноутбука, температуры и ping.",
+    loadoutEyebrow: "Meta Loadout Analyzer",
+    loadoutTitle: "Соберите sample loadout и оцените эффективность.",
+    weaponCategory: "Категория оружия",
+    weaponName: "Название оружия",
+    playstyle: "Стиль игры",
+    sampleLoadout: "Sample loadout",
+    attachmentNote: "Используйте до 5 attachments. Лишние поля не учитываются.",
+    effectiveness: "Estimated Effectiveness",
+    metaTier: "Meta Tier",
+    generateCode: "Создать код",
+    saveLoadout: "Сохранить loadout",
+    copyLoadout: "Скопировать loadout",
+    copyCode: "Скопировать код",
+    copyComment: "Комментарий для Telegram/X",
+    importCode: "Import Code",
+    loadoutDisclaimer: "Scores are estimates. Реальный результат зависит от updates, recoil skill, attachments, platform, FPS, ping и playstyle.",
+    savedLoadouts: "Мои сохраненные loadouts",
+    reportEyebrow: "Ping Report Generator",
+    reportTitle: "Создайте понятный English ping report.",
+    country: "Страна",
+    city: "Город",
+    currentPing: "Текущий ping",
+    serverRoute: "Маршрут сервера",
+    copyPingReport: "Скопировать ping report",
+    copyForX: "Скопировать для X",
+    copyForInstagram: "Скопировать для Instagram",
+    commentsEyebrow: "Copy Comments",
+    commentsTitle: "Готовые English templates для постов и support.",
+    shortComment: "Short comment",
+    mediumComment: "Medium comment",
+    politeComment: "Angry but polite comment",
+    supportComment: "Official support message",
+    copy: "Copy",
+    mapEyebrow: "Central Asia Server Map",
+    mapTitle: "Нет близкого Warzone сервера.",
+    mapText: "Central Asia players are routed to EU / Middle East servers.",
+    qrTitle: "Сканируйте QR, чтобы вступить в Telegram.",
+    roadmapEyebrow: "Roadmap",
+    roadmapTitle: "Что community строит дальше.",
+    roadmapCommunity: "Build Central Asia Warzone community",
+    roadmapReports: "Collect ping reports",
+    roadmapCampaign: "Share server request campaign",
+    roadmapTelegram: "Grow Telegram squad",
+    roadmapHelp: "Help players find best FPS/settings/loadouts",
     settingsEyebrow: "Recommended quick settings",
     settingsTitle: "Быстрые и чистые настройки для competitive игры.",
     settingDisplayLabel: "Экран",
@@ -106,6 +198,8 @@ const translations = {
     navProblem: "Ping Problem",
     navRequest: "Server Request",
     navSimulator: "FPS Simulator",
+    navLoadout: "Loadout",
+    navReport: "Ping Report",
     navSettings: "Settings",
     navCommunity: "Community",
     heroEyebrow: "Central Asia Squad Network",
@@ -135,7 +229,51 @@ const translations = {
     frameGeneration: "Frame Generation",
     estimatedFps: "Estimated FPS",
     framegenWarning: "Frame Generation works only on RTX 40/50 series GPUs.",
-    fpsDisclaimer: "This is an estimate, real FPS depends on map, driver, settings, laptop power limit and temperature.",
+    fpsDisclaimer: "This is an estimate, real FPS depends on map, driver, settings, laptop power limit, temperature and ping.",
+    loadoutEyebrow: "Meta Loadout Analyzer",
+    loadoutTitle: "Build a sample loadout and estimate its effectiveness.",
+    weaponCategory: "Weapon category",
+    weaponName: "Weapon name",
+    playstyle: "Playstyle",
+    sampleLoadout: "Sample loadout",
+    attachmentNote: "Use up to 5 attachments. Extra fields are ignored.",
+    effectiveness: "Estimated Effectiveness",
+    metaTier: "Meta Tier",
+    generateCode: "Generate Code",
+    saveLoadout: "Save My Loadout",
+    copyLoadout: "Copy Loadout",
+    copyCode: "Copy Code",
+    copyComment: "Copy Comment for Telegram/X",
+    importCode: "Import Code",
+    loadoutDisclaimer: "Scores are estimates. Real performance depends on game updates, recoil skill, attachments, platform, FPS, ping and playstyle.",
+    savedLoadouts: "My Saved Loadouts",
+    reportEyebrow: "Ping Report Generator",
+    reportTitle: "Generate a clear English ping report.",
+    country: "Country",
+    city: "City",
+    currentPing: "Current ping",
+    serverRoute: "Server route",
+    copyPingReport: "Copy Ping Report",
+    copyForX: "Copy for X",
+    copyForInstagram: "Copy for Instagram",
+    commentsEyebrow: "Copy Comments",
+    commentsTitle: "Ready English templates for posts and support messages.",
+    shortComment: "Short comment",
+    mediumComment: "Medium comment",
+    politeComment: "Angry but polite comment",
+    supportComment: "Official support message",
+    copy: "Copy",
+    mapEyebrow: "Central Asia Server Map",
+    mapTitle: "No nearby Warzone server.",
+    mapText: "Central Asia players are routed to EU / Middle East servers.",
+    qrTitle: "Scan QR to join Telegram.",
+    roadmapEyebrow: "Roadmap",
+    roadmapTitle: "What this community is building next.",
+    roadmapCommunity: "Build Central Asia Warzone community",
+    roadmapReports: "Collect ping reports",
+    roadmapCampaign: "Share server request campaign",
+    roadmapTelegram: "Grow Telegram squad",
+    roadmapHelp: "Help players find best FPS/settings/loadouts",
     settingsEyebrow: "Recommended quick settings",
     settingsTitle: "Fast, clean settings for competitive play.",
     settingDisplayLabel: "Display",
@@ -209,6 +347,35 @@ const fpsLowEl = document.querySelector("#fps-low");
 const fpsMediumEl = document.querySelector("#fps-medium");
 const fpsHighEl = document.querySelector("#fps-high");
 const framegenWarningEl = document.querySelector("#framegen-warning");
+const loadoutStorageKey = "warzoneuz-loadouts";
+const loadoutControls = {
+  category: document.querySelector("#weapon-category"),
+  name: document.querySelector("#weapon-name"),
+  playstyle: document.querySelector("#playstyle"),
+  preset: document.querySelector("#preset-loadout"),
+  code: document.querySelector("#loadout-code")
+};
+const statControls = {
+  damage: document.querySelector("#stat-damage"),
+  range: document.querySelector("#stat-range"),
+  recoil: document.querySelector("#stat-recoil"),
+  mobility: document.querySelector("#stat-mobility"),
+  ads: document.querySelector("#stat-ads"),
+  velocity: document.querySelector("#stat-velocity"),
+  mag: document.querySelector("#stat-mag")
+};
+const attachmentInputs = Array.from(document.querySelectorAll("[data-attachment]"));
+const effectivenessEl = document.querySelector("#effectiveness-score");
+const metaTierEl = document.querySelector("#meta-tier");
+const savedLoadoutsListEl = document.querySelector("#saved-loadouts-list");
+const pingReportControls = {
+  country: document.querySelector("#report-country"),
+  city: document.querySelector("#report-city"),
+  platform: document.querySelector("#report-platform"),
+  ping: document.querySelector("#report-ping"),
+  route: document.querySelector("#report-route")
+};
+const pingReportOutputEl = document.querySelector("#ping-report-output");
 let currentLanguage = detectLanguage();
 let toastTimer;
 
@@ -373,6 +540,239 @@ function updateFpsEstimate() {
   fpsHighEl.textContent = formatRange(highValue);
 }
 
+function getAttachments() {
+  return attachmentInputs
+    .map((input) => ({ slot: input.dataset.attachment, value: input.value.trim() }))
+    .filter((attachment) => attachment.value)
+    .slice(0, 5);
+}
+
+function getLoadoutData() {
+  const stats = {};
+
+  Object.entries(statControls).forEach(([key, input]) => {
+    stats[key] = Number(input.value);
+  });
+
+  return {
+    category: loadoutControls.category.value,
+    name: loadoutControls.name.value.trim() || "Custom Loadout",
+    playstyle: loadoutControls.playstyle.value,
+    attachments: getAttachments(),
+    stats
+  };
+}
+
+function setLoadoutData(data) {
+  loadoutControls.category.value = data.category || "Assault Rifle";
+  loadoutControls.name.value = data.name || "";
+  loadoutControls.playstyle.value = data.playstyle || "mid";
+
+  attachmentInputs.forEach((input) => {
+    const attachment = (data.attachments || []).find((item) => item.slot === input.dataset.attachment);
+    input.value = attachment ? attachment.value : "";
+  });
+
+  Object.entries(statControls).forEach(([key, input]) => {
+    input.value = data.stats?.[key] || input.value;
+    input.nextElementSibling.textContent = input.value;
+  });
+
+  updateLoadoutScore();
+}
+
+function scoreWeights(playstyle) {
+  const weights = {
+    close: { damage: 1.25, range: 0.6, recoil: 0.8, mobility: 1.4, ads: 1.35, velocity: 0.65, mag: 0.85 },
+    mid: { damage: 1.05, range: 1, recoil: 1.05, mobility: 0.95, ads: 1, velocity: 1, mag: 0.95 },
+    long: { damage: 0.95, range: 1.45, recoil: 1.35, mobility: 0.55, ads: 0.75, velocity: 1.45, mag: 0.8 },
+    ranked: { damage: 1, range: 1, recoil: 1.25, mobility: 0.95, ads: 1.2, velocity: 0.95, mag: 1.15 },
+    resurgence: { damage: 1.05, range: 0.75, recoil: 0.9, mobility: 1.45, ads: 1.35, velocity: 0.75, mag: 0.95 },
+    bigmap: { damage: 0.95, range: 1.4, recoil: 1.2, mobility: 0.65, ads: 0.8, velocity: 1.4, mag: 0.9 }
+  };
+
+  return weights[playstyle] || weights.mid;
+}
+
+function calculateLoadoutScore(data) {
+  const weights = scoreWeights(data.playstyle);
+  const totalWeight = Object.values(weights).reduce((sum, weight) => sum + weight, 0);
+  const weightedStats = Object.entries(weights).reduce((sum, [key, weight]) => {
+    return sum + (data.stats[key] || 1) * weight;
+  }, 0);
+  const attachmentBonus = Math.min(data.attachments.length, 5) * 1.2;
+  const score = Math.round((weightedStats / (totalWeight * 10)) * 100 + attachmentBonus);
+
+  return Math.min(100, Math.max(25, score));
+}
+
+function tierForScore(score) {
+  if (score >= 90) return "S Tier";
+  if (score >= 80) return "A Tier";
+  if (score >= 70) return "B Tier";
+  if (score >= 60) return "C Tier";
+  return "Needs work";
+}
+
+function updateLoadoutScore() {
+  const data = getLoadoutData();
+  const score = calculateLoadoutScore(data);
+
+  effectivenessEl.textContent = `${score}%`;
+  metaTierEl.textContent = tierForScore(score);
+
+  Object.values(statControls).forEach((input) => {
+    input.nextElementSibling.textContent = input.value;
+  });
+}
+
+function encodeLoadout(data = getLoadoutData()) {
+  return btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+}
+
+function decodeLoadout(code) {
+  return JSON.parse(decodeURIComponent(escape(atob(code.trim()))));
+}
+
+function loadoutSummary(data = getLoadoutData()) {
+  const score = calculateLoadoutScore(data);
+  const attachments = data.attachments.map((item) => `${item.slot}: ${item.value}`).join(", ") || "No attachments";
+
+  return `${data.name} (${data.category}) - ${tierForScore(score)} / ${score}%. Playstyle: ${data.playstyle}. Attachments: ${attachments}.`;
+}
+
+function saveLoadout() {
+  const data = getLoadoutData();
+  const saved = JSON.parse(localStorage.getItem(loadoutStorageKey) || "[]");
+  saved.unshift({ id: Date.now(), data });
+  localStorage.setItem(loadoutStorageKey, JSON.stringify(saved.slice(0, 12)));
+  renderSavedLoadouts();
+}
+
+function renderSavedLoadouts() {
+  const saved = JSON.parse(localStorage.getItem(loadoutStorageKey) || "[]");
+
+  savedLoadoutsListEl.innerHTML = "";
+
+  if (!saved.length) {
+    const empty = document.createElement("p");
+    empty.className = "tool-note";
+    empty.textContent = "No saved loadouts yet.";
+    savedLoadoutsListEl.appendChild(empty);
+    return;
+  }
+
+  saved.forEach((item) => {
+    const row = document.createElement("div");
+    row.className = "saved-loadout-item";
+    row.innerHTML = `<div><strong>${item.data.name}</strong><small>${item.data.category} · ${item.data.playstyle}</small></div>`;
+
+    const actions = document.createElement("div");
+    actions.className = "tool-actions";
+
+    const loadButton = document.createElement("button");
+    loadButton.className = "delete-loadout";
+    loadButton.type = "button";
+    loadButton.textContent = "Load";
+    loadButton.addEventListener("click", () => setLoadoutData(item.data));
+
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "delete-loadout";
+    deleteButton.type = "button";
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
+      const next = saved.filter((savedItem) => savedItem.id !== item.id);
+      localStorage.setItem(loadoutStorageKey, JSON.stringify(next));
+      renderSavedLoadouts();
+    });
+
+    actions.append(loadButton, deleteButton);
+    row.appendChild(actions);
+    savedLoadoutsListEl.appendChild(row);
+  });
+}
+
+function applyPreset(value) {
+  const presets = {
+    balancedAr: {
+      category: "Assault Rifle",
+      name: "Balanced AR",
+      playstyle: "mid",
+      attachments: [
+        { slot: "Muzzle", value: "Compensator" },
+        { slot: "Barrel", value: "Long Barrel" },
+        { slot: "Optic", value: "Clean 2.5x" },
+        { slot: "Underbarrel", value: "Vertical Grip" },
+        { slot: "Magazine", value: "Extended Mag" }
+      ],
+      stats: { damage: 7, range: 8, recoil: 8, mobility: 6, ads: 7, velocity: 8, mag: 8 }
+    },
+    closeSmg: {
+      category: "SMG",
+      name: "Close Range SMG",
+      playstyle: "close",
+      attachments: [
+        { slot: "Muzzle", value: "Light Suppressor" },
+        { slot: "Barrel", value: "Short Barrel" },
+        { slot: "Stock", value: "Mobility Stock" },
+        { slot: "Magazine", value: "Fast Mag" },
+        { slot: "Rear Grip", value: "Quick Grip" }
+      ],
+      stats: { damage: 7, range: 5, recoil: 6, mobility: 9, ads: 9, velocity: 5, mag: 7 }
+    },
+    longSniper: {
+      category: "Sniper",
+      name: "Long Range Sniper",
+      playstyle: "long",
+      attachments: [
+        { slot: "Muzzle", value: "Suppressor" },
+        { slot: "Barrel", value: "Heavy Barrel" },
+        { slot: "Optic", value: "Long Range Scope" },
+        { slot: "Ammunition", value: "High Velocity" },
+        { slot: "Stock", value: "Stable Stock" }
+      ],
+      stats: { damage: 9, range: 10, recoil: 8, mobility: 4, ads: 5, velocity: 10, mag: 5 }
+    }
+  };
+
+  if (presets[value]) {
+    setLoadoutData(presets[value]);
+  }
+}
+
+function generatePingReport() {
+  const city = pingReportControls.city.value.trim() || "Samarkand";
+  const country = pingReportControls.country.value.trim() || "Uzbekistan";
+  const ping = pingReportControls.ping.value.trim() || "180-250 ms";
+  const route = pingReportControls.route.value;
+  const platform = pingReportControls.platform.value;
+
+  return `I am from ${city}, ${country}. My ping in Warzone is usually ${ping} on ${platform}, routed through ${route}. Central Asia players need closer servers.`;
+}
+
+function updatePingReport() {
+  pingReportOutputEl.textContent = generatePingReport();
+}
+
+function copyText(text, button) {
+  const dictionary = translations[currentLanguage] || translations.en;
+
+  navigator.clipboard.writeText(text).catch(() => {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.setAttribute("readonly", "");
+    textArea.style.position = "fixed";
+    textArea.style.opacity = "0";
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+  });
+
+  showToast(dictionary.copied);
+  showCopiedButton(button, dictionary.copied);
+}
+
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {
     setLanguage(button.dataset.lang);
@@ -387,5 +787,86 @@ Object.values(fpsControls).forEach((control) => {
   control.addEventListener("change", updateFpsEstimate);
 });
 
+Object.values(statControls).forEach((input) => {
+  input.addEventListener("input", updateLoadoutScore);
+});
+
+Object.values(loadoutControls).forEach((control) => {
+  if (control && control !== loadoutControls.code && control !== loadoutControls.preset) {
+    control.addEventListener("input", updateLoadoutScore);
+    control.addEventListener("change", updateLoadoutScore);
+  }
+});
+
+attachmentInputs.forEach((input) => {
+  input.addEventListener("input", updateLoadoutScore);
+});
+
+loadoutControls.preset.addEventListener("change", () => applyPreset(loadoutControls.preset.value));
+
+document.querySelector("#generate-code").addEventListener("click", () => {
+  loadoutControls.code.value = encodeLoadout();
+});
+
+document.querySelector("#save-loadout").addEventListener("click", () => {
+  saveLoadout();
+  showToast((translations[currentLanguage] || translations.en).copied);
+});
+
+document.querySelector("#copy-loadout").addEventListener("click", (event) => {
+  copyText(loadoutSummary(), event.currentTarget);
+});
+
+document.querySelector("#copy-code").addEventListener("click", (event) => {
+  const code = loadoutControls.code.value.trim() || encodeLoadout();
+  loadoutControls.code.value = code;
+  copyText(code, event.currentTarget);
+});
+
+document.querySelector("#copy-comment").addEventListener("click", (event) => {
+  copyText(`My Warzone sample loadout: ${loadoutSummary()} Scores are estimates, not official meta.`, event.currentTarget);
+});
+
+loadoutControls.code.addEventListener("change", () => {
+  if (!loadoutControls.code.value.trim()) {
+    return;
+  }
+
+  try {
+    setLoadoutData(decodeLoadout(loadoutControls.code.value));
+  } catch (error) {
+    loadoutControls.code.value = "";
+    showToast("Invalid code");
+  }
+});
+
+Object.values(pingReportControls).forEach((control) => {
+  control.addEventListener("input", updatePingReport);
+  control.addEventListener("change", updatePingReport);
+});
+
+document.querySelectorAll("[data-copy-target]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const report = generatePingReport();
+    const variants = {
+      ping: report,
+      pingX: `${report} #Warzone #CentralAsiaServers`,
+      pingInstagram: `${report}\n\nPlease support Central Asia players.`
+    };
+
+    copyText(variants[button.dataset.copyTarget], button);
+  });
+});
+
+document.querySelectorAll("[data-copy-template]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const template = document.querySelector(`[data-template="${button.dataset.copyTemplate}"]`);
+    copyText(template.textContent.trim(), button);
+  });
+});
+
 translatePage(currentLanguage);
 updateFpsEstimate();
+updateLoadoutScore();
+updatePingReport();
+renderSavedLoadouts();
