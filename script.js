@@ -38,7 +38,10 @@ const translations = {
     graphics: "Graphics",
     frameGeneration: "Frame Generation",
     estimatedFps: "Estimated FPS",
+    realFps: "Real FPS",
+    displayedFps: "With Frame Generation",
     framegenWarning: "Frame Generation faqat RTX 40/50 series GPUlarda ishlaydi.",
+    framegenNote: "Frame Generation displayed FPS, real input FPS emas.",
     fpsDisclaimer: "Bu taxminiy hisob, real FPS map, driver, settings, laptop power limit, temperature va pingga bog‘liq.",
     loadoutEyebrow: "Meta Loadout Analyzer",
     loadoutTitle: "Sample loadout yig‘ing va taxminiy effectivenessni ko‘ring.",
@@ -136,7 +139,10 @@ const translations = {
     graphics: "Графика",
     frameGeneration: "Frame Generation",
     estimatedFps: "Примерный FPS",
+    realFps: "Реальный FPS",
+    displayedFps: "С Frame Generation",
     framegenWarning: "Frame Generation работает только на RTX 40/50 series GPU.",
+    framegenNote: "Frame Generation показывает displayed FPS, а не реальный input FPS.",
     fpsDisclaimer: "Это оценка: реальный FPS зависит от карты, драйвера, настроек, power limit ноутбука, температуры и ping.",
     loadoutEyebrow: "Meta Loadout Analyzer",
     loadoutTitle: "Соберите sample loadout и оцените эффективность.",
@@ -234,7 +240,10 @@ const translations = {
     graphics: "Graphics",
     frameGeneration: "Frame Generation",
     estimatedFps: "Estimated FPS",
+    realFps: "Real FPS",
+    displayedFps: "With Frame Generation",
     framegenWarning: "Frame Generation works only on RTX 40/50 series GPUs.",
+    framegenNote: "Frame Generation is displayed FPS, not real input FPS.",
     fpsDisclaimer: "This is an estimate, real FPS depends on map, driver, settings, laptop power limit, temperature and ping.",
     loadoutEyebrow: "Meta Loadout Analyzer",
     loadoutTitle: "Build a sample loadout and estimate its effectiveness.",
@@ -300,48 +309,131 @@ const translations = {
 const pcParts = {
   desktop: {
     cpus: [
+      { value: "r53600", label: "Ryzen 5 3600", multiplier: 0.82 },
       { value: "r5600", label: "Ryzen 5 5600", multiplier: 0.94 },
+      { value: "r5600x", label: "Ryzen 5 5600X", multiplier: 0.97 },
+      { value: "r5700x", label: "Ryzen 7 5700X", multiplier: 1 },
+      { value: "r5800x3d", label: "Ryzen 7 5800X3D", multiplier: 1.1 },
       { value: "r7500f", label: "Ryzen 5 7500F", multiplier: 1.05 },
-      { value: "r5700x", label: "Ryzen 7 5700X", multiplier: 0.99 },
+      { value: "r57600", label: "Ryzen 5 7600", multiplier: 1.07 },
+      { value: "r77700", label: "Ryzen 7 7700", multiplier: 1.1 },
       { value: "r7800x3d", label: "Ryzen 7 7800X3D", multiplier: 1.2 },
+      { value: "r79700x", label: "Ryzen 7 9700X", multiplier: 1.14 },
+      { value: "r79800x3d", label: "Ryzen 7 9800X3D", multiplier: 1.24 },
+      { value: "i312100f", label: "Intel i3-12100F", multiplier: 0.82 },
       { value: "i512400f", label: "Intel i5-12400F", multiplier: 0.96 },
-      { value: "i513400f", label: "Intel i5-13400F", multiplier: 1 },
-      { value: "i514600k", label: "Intel i5-14600K", multiplier: 1.1 },
+      { value: "i512600k", label: "Intel i5-12600K", multiplier: 1.01 },
       { value: "i712700f", label: "Intel i7-12700F", multiplier: 1.06 },
-      { value: "i713700k", label: "Intel i7-13700K", multiplier: 1.12 }
+      { value: "i712700k", label: "Intel i7-12700K", multiplier: 1.08 },
+      { value: "i513400f", label: "Intel i5-13400F", multiplier: 1 },
+      { value: "i513600k", label: "Intel i5-13600K", multiplier: 1.1 },
+      { value: "i713700k", label: "Intel i7-13700K", multiplier: 1.13 },
+      { value: "i514400f", label: "Intel i5-14400F", multiplier: 1.02 },
+      { value: "i514600k", label: "Intel i5-14600K", multiplier: 1.1 },
+      { value: "i714700k", label: "Intel i7-14700K", multiplier: 1.16 }
     ],
     gpus: [
-      { value: "gtx1660Super", label: "GTX 1660 Super 6GB", base: 72, vram: 6, frameGen: false },
-      { value: "rtx2060", label: "RTX 2060 6GB", base: 82, vram: 6, frameGen: false },
-      { value: "rtx3060", label: "RTX 3060 12GB", base: 108, vram: 12, frameGen: false },
-      { value: "rtx3060Ti", label: "RTX 3060 Ti 8GB", base: 132, vram: 8, frameGen: false },
-      { value: "rtx4060", label: "RTX 4060 8GB", base: 128, vram: 8, frameGen: true },
-      { value: "rtx4060Ti", label: "RTX 4060 Ti 8GB", base: 152, vram: 8, frameGen: true },
-      { value: "rtx4070", label: "RTX 4070 12GB", base: 178, vram: 12, frameGen: true },
-      { value: "rtx4070Super", label: "RTX 4070 Super 12GB", base: 205, vram: 12, frameGen: true },
-      { value: "rtx4070TiSuper", label: "RTX 4070 Ti Super 16GB", base: 224, vram: 16, frameGen: true },
-      { value: "rtx5070", label: "RTX 5070 12GB", base: 242, vram: 12, frameGen: true }
+      { value: "gtx1050ti", label: "GTX 1050 Ti 4GB", base: 34, vram: 4, frameGen: false, dlss: false },
+      { value: "gtx1060", label: "GTX 1060 6GB", base: 46, vram: 6, frameGen: false, dlss: false },
+      { value: "gtx1650", label: "GTX 1650 4GB", base: 42, vram: 4, frameGen: false, dlss: false },
+      { value: "gtx1660Super", label: "GTX 1660 Super 6GB", base: 62, vram: 6, frameGen: false, dlss: false },
+      { value: "rtx2060", label: "RTX 2060 6GB", base: 72, vram: 6, frameGen: false, dlss: true },
+      { value: "rtx2060Super", label: "RTX 2060 Super 8GB", base: 84, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx2070", label: "RTX 2070 8GB", base: 90, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx2070Super", label: "RTX 2070 Super 8GB", base: 101, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx2080", label: "RTX 2080 8GB", base: 110, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx2080Ti", label: "RTX 2080 Ti 11GB", base: 128, vram: 11, frameGen: false, dlss: true },
+      { value: "rtx3050", label: "RTX 3050 8GB", base: 68, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx3060", label: "RTX 3060 12GB", base: 98, vram: 12, frameGen: false, dlss: true },
+      { value: "rtx3060Ti", label: "RTX 3060 Ti 8GB", base: 116, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx3070", label: "RTX 3070 8GB", base: 132, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx3070Ti", label: "RTX 3070 Ti 8GB", base: 142, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx3080", label: "RTX 3080 10GB", base: 160, vram: 10, frameGen: false, dlss: true },
+      { value: "rtx3080Ti", label: "RTX 3080 Ti 12GB", base: 176, vram: 12, frameGen: false, dlss: true },
+      { value: "rtx3090", label: "RTX 3090 24GB", base: 188, vram: 24, frameGen: false, dlss: true },
+      { value: "rtx4060", label: "RTX 4060 8GB", base: 118, vram: 8, frameGen: true, dlss: true },
+      { value: "rtx4060Ti", label: "RTX 4060 Ti 8GB", base: 138, vram: 8, frameGen: true, dlss: true },
+      { value: "rtx4070", label: "RTX 4070 12GB", base: 154, vram: 12, frameGen: true, dlss: true },
+      { value: "rtx4070Super", label: "RTX 4070 Super 12GB", base: 168, vram: 12, frameGen: true, dlss: true },
+      { value: "rtx4070Ti", label: "RTX 4070 Ti 12GB", base: 190, vram: 12, frameGen: true, dlss: true },
+      { value: "rtx4070TiSuper", label: "RTX 4070 Ti Super 16GB", base: 205, vram: 16, frameGen: true, dlss: true },
+      { value: "rtx4080", label: "RTX 4080 16GB", base: 225, vram: 16, frameGen: true, dlss: true },
+      { value: "rtx4080Super", label: "RTX 4080 Super 16GB", base: 238, vram: 16, frameGen: true, dlss: true },
+      { value: "rtx4090", label: "RTX 4090 24GB", base: 285, vram: 24, frameGen: true, dlss: true },
+      { value: "rtx5060", label: "RTX 5060 8GB", base: 130, vram: 8, frameGen: true, dlss: true },
+      { value: "rtx5060Ti", label: "RTX 5060 Ti 8GB", base: 148, vram: 8, frameGen: true, dlss: true },
+      { value: "rtx5070", label: "RTX 5070 12GB", base: 188, vram: 12, frameGen: true, dlss: true },
+      { value: "rtx5070Ti", label: "RTX 5070 Ti 16GB", base: 218, vram: 16, frameGen: true, dlss: true },
+      { value: "rtx5080", label: "RTX 5080 16GB", base: 265, vram: 16, frameGen: true, dlss: true },
+      { value: "rtx5090", label: "RTX 5090 32GB", base: 330, vram: 32, frameGen: true, dlss: true },
+      { value: "rx580", label: "RX 580 8GB", base: 48, vram: 8, frameGen: false, dlss: false },
+      { value: "rx5600xt", label: "RX 5600 XT 6GB", base: 65, vram: 6, frameGen: false, dlss: false },
+      { value: "rx5700xt", label: "RX 5700 XT 8GB", base: 88, vram: 8, frameGen: false, dlss: false },
+      { value: "rx6600", label: "RX 6600 8GB", base: 82, vram: 8, frameGen: false, dlss: false },
+      { value: "rx6600xt", label: "RX 6600 XT 8GB", base: 96, vram: 8, frameGen: false, dlss: false },
+      { value: "rx6650xt", label: "RX 6650 XT 8GB", base: 103, vram: 8, frameGen: false, dlss: false },
+      { value: "rx6700xt", label: "RX 6700 XT 12GB", base: 126, vram: 12, frameGen: false, dlss: false },
+      { value: "rx6750xt", label: "RX 6750 XT 12GB", base: 132, vram: 12, frameGen: false, dlss: false },
+      { value: "rx6800", label: "RX 6800 16GB", base: 150, vram: 16, frameGen: false, dlss: false },
+      { value: "rx6800xt", label: "RX 6800 XT 16GB", base: 168, vram: 16, frameGen: false, dlss: false },
+      { value: "rx6900xt", label: "RX 6900 XT 16GB", base: 180, vram: 16, frameGen: false, dlss: false },
+      { value: "rx7600", label: "RX 7600 8GB", base: 100, vram: 8, frameGen: false, dlss: false },
+      { value: "rx7600xt", label: "RX 7600 XT 16GB", base: 110, vram: 16, frameGen: false, dlss: false },
+      { value: "rx7700xt", label: "RX 7700 XT 12GB", base: 145, vram: 12, frameGen: false, dlss: false },
+      { value: "rx7800xt", label: "RX 7800 XT 16GB", base: 165, vram: 16, frameGen: false, dlss: false },
+      { value: "rx7900gre", label: "RX 7900 GRE 16GB", base: 180, vram: 16, frameGen: false, dlss: false },
+      { value: "rx7900xt", label: "RX 7900 XT 20GB", base: 215, vram: 20, frameGen: false, dlss: false },
+      { value: "rx7900xtx", label: "RX 7900 XTX 24GB", base: 250, vram: 24, frameGen: false, dlss: false },
+      { value: "rx9060xt", label: "RX 9060 XT 16GB", base: 155, vram: 16, frameGen: false, dlss: false },
+      { value: "rx9070", label: "RX 9070 16GB", base: 210, vram: 16, frameGen: false, dlss: false },
+      { value: "rx9070xt", label: "RX 9070 XT 16GB", base: 235, vram: 16, frameGen: false, dlss: false }
     ]
   },
   laptop: {
     cpus: [
+      { value: "r55600h", label: "Ryzen 5 5600H", multiplier: 0.8 },
       { value: "r56600h", label: "Ryzen 5 6600H", multiplier: 0.86 },
       { value: "r57535hs", label: "Ryzen 5 7535HS", multiplier: 0.89 },
+      { value: "r76800h", label: "Ryzen 7 6800H", multiplier: 0.9 },
       { value: "r7435hs", label: "Ryzen 7 7435HS", multiplier: 0.92 },
+      { value: "r77735hs", label: "Ryzen 7 7735HS", multiplier: 0.94 },
       { value: "r77840hs", label: "Ryzen 7 7840HS", multiplier: 0.98 },
+      { value: "r78845hs", label: "Ryzen 7 8845HS", multiplier: 1 },
+      { value: "i511400h", label: "Intel i5-11400H", multiplier: 0.78 },
       { value: "i512450h", label: "Intel i5-12450H", multiplier: 0.86 },
+      { value: "i512500h", label: "Intel i5-12500H", multiplier: 0.9 },
       { value: "i513420h", label: "Intel i5-13420H", multiplier: 0.9 },
       { value: "i712650h", label: "Intel i7-12650H", multiplier: 0.94 },
+      { value: "i712700h", label: "Intel i7-12700H", multiplier: 0.96 },
       { value: "i713620h", label: "Intel i7-13620H", multiplier: 0.97 },
+      { value: "i713700h", label: "Intel i7-13700H", multiplier: 1 },
       { value: "i714650hx", label: "Intel i7-14650HX", multiplier: 1.04 }
     ],
     gpus: [
-      { value: "rtx3050Laptop4", label: "RTX 3050 Laptop 4GB", base: 58, vram: 4, frameGen: false },
-      { value: "rtx3050Laptop6", label: "RTX 3050 Laptop 6GB", base: 66, vram: 6, frameGen: false },
-      { value: "rtx4050Laptop", label: "RTX 4050 Laptop 6GB", base: 94, vram: 6, frameGen: true },
-      { value: "rtx4060Laptop", label: "RTX 4060 Laptop 8GB", base: 116, vram: 8, frameGen: true },
-      { value: "rtx4070Laptop", label: "RTX 4070 Laptop 8GB", base: 138, vram: 8, frameGen: true },
-      { value: "rtx5070Laptop", label: "RTX 5070 Laptop 8GB", base: 160, vram: 8, frameGen: true }
+      { value: "gtx1650Laptop", label: "GTX 1650 Laptop 4GB", base: 38, vram: 4, frameGen: false, dlss: false },
+      { value: "rtx2050Laptop", label: "RTX 2050 Laptop 4GB", base: 48, vram: 4, frameGen: false, dlss: true },
+      { value: "rtx3050Laptop4", label: "RTX 3050 Laptop 4GB", base: 54, vram: 4, frameGen: false, dlss: true },
+      { value: "rtx3050Laptop6", label: "RTX 3050 Laptop 6GB", base: 62, vram: 6, frameGen: false, dlss: true },
+      { value: "rtx3060Laptop", label: "RTX 3060 Laptop 6GB", base: 85, vram: 6, frameGen: false, dlss: true },
+      { value: "rtx3070Laptop", label: "RTX 3070 Laptop 8GB", base: 105, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx3070TiLaptop", label: "RTX 3070 Ti Laptop 8GB", base: 115, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx3080Laptop", label: "RTX 3080 Laptop 8GB", base: 122, vram: 8, frameGen: false, dlss: true },
+      { value: "rtx4050Laptop", label: "RTX 4050 Laptop 6GB", base: 82, vram: 6, frameGen: true, dlss: true },
+      { value: "rtx4060Laptop", label: "RTX 4060 Laptop 8GB", base: 105, vram: 8, frameGen: true, dlss: true },
+      { value: "rtx4070Laptop", label: "RTX 4070 Laptop 8GB", base: 122, vram: 8, frameGen: true, dlss: true },
+      { value: "rtx4080Laptop", label: "RTX 4080 Laptop 12GB", base: 160, vram: 12, frameGen: true, dlss: true },
+      { value: "rtx4090Laptop", label: "RTX 4090 Laptop 16GB", base: 190, vram: 16, frameGen: true, dlss: true },
+      { value: "rtx5050Laptop", label: "RTX 5050 Laptop 8GB", base: 85, vram: 8, frameGen: true, dlss: true },
+      { value: "rtx5060Laptop", label: "RTX 5060 Laptop 8GB", base: 108, vram: 8, frameGen: true, dlss: true },
+      { value: "rtx5070Laptop", label: "RTX 5070 Laptop 8GB", base: 130, vram: 8, frameGen: true, dlss: true },
+      { value: "rtx5070TiLaptop", label: "RTX 5070 Ti Laptop 12GB", base: 150, vram: 12, frameGen: true, dlss: true },
+      { value: "rtx5080Laptop", label: "RTX 5080 Laptop 16GB", base: 185, vram: 16, frameGen: true, dlss: true },
+      { value: "rx6600m", label: "RX 6600M 8GB", base: 78, vram: 8, frameGen: false, dlss: false },
+      { value: "rx6700m", label: "RX 6700M 10GB", base: 96, vram: 10, frameGen: false, dlss: false },
+      { value: "rx6800m", label: "RX 6800M 12GB", base: 118, vram: 12, frameGen: false, dlss: false },
+      { value: "rx7600mxt", label: "RX 7600M XT 8GB", base: 92, vram: 8, frameGen: false, dlss: false },
+      { value: "rx7700s", label: "RX 7700S 8GB", base: 102, vram: 8, frameGen: false, dlss: false },
+      { value: "rx7800mxt", label: "RX 7800M XT 12GB", base: 138, vram: 12, frameGen: false, dlss: false }
     ]
   }
 };
@@ -349,14 +441,14 @@ const pcParts = {
 const graphicsMultipliers = {
   low: 1,
   medium: 0.82,
-  high: 0.66
+  high: 0.7
 };
 
 const dlssMultipliers = {
   off: 1,
-  quality: 1.08,
-  balanced: 1.16,
-  performance: 1.28
+  quality: 1.04,
+  balanced: 1.08,
+  performance: 1.14
 };
 
 const storageKey = "warzoneuz-language";
@@ -375,6 +467,7 @@ const fpsControls = {
   frameGeneration: document.querySelector("#frame-generation")
 };
 const fpsRangeEl = document.querySelector("#fps-range");
+const fpsDisplayedEl = document.querySelector("#fps-displayed");
 const fpsLowEl = document.querySelector("#fps-low");
 const fpsMediumEl = document.querySelector("#fps-medium");
 const fpsHighEl = document.querySelector("#fps-high");
@@ -531,7 +624,7 @@ async function copyServerRequest(event) {
 
 function formatRange(value) {
   const low = Math.max(35, Math.round((value * 0.9) / 5) * 5);
-  const high = Math.max(low + 10, Math.round((value * 1.12) / 5) * 5);
+  const high = Math.max(low + 10, Math.round((value * 1.06) / 5) * 5);
 
   return `${low}-${high}`;
 }
@@ -577,7 +670,11 @@ function ramMultiplier() {
   const ram = Number(fpsControls.ram.value);
 
   if (ram <= 8) {
-    return 0.82;
+    return 0.72;
+  }
+
+  if (ram >= 64) {
+    return 1.045;
   }
 
   if (ram >= 32) {
@@ -591,48 +688,128 @@ function ramMultiplier() {
   return 1;
 }
 
-function vramMultiplier(gpu, graphicsPreset) {
-  if (graphicsPreset === "high") {
-    if (gpu.vram <= 4) {
-      return 0.76;
-    }
+function resolutionMultiplier() {
+  const resolution = fpsControls.resolution.value;
 
-    if (gpu.vram <= 6) {
-      return 0.88;
-    }
+  if (resolution === "2160") {
+    return 0.42;
   }
 
-  if (graphicsPreset === "medium" && gpu.vram <= 4) {
-    return 0.88;
-  }
-
-  if (fpsControls.resolution.value === "1440" && graphicsPreset === "high" && gpu.vram >= 12) {
-    return 1.03;
+  if (resolution === "1440") {
+    return 0.72;
   }
 
   return 1;
 }
 
+function vramMultiplier(gpu, graphicsPreset) {
+  const resolution = fpsControls.resolution.value;
+  const is1440p = resolution === "1440";
+  const is4k = resolution === "2160";
+
+  if (gpu.vram <= 4) {
+    const presetPenalty = {
+      low: 0.86,
+      medium: 0.72,
+      high: 0.58
+    };
+
+    return (presetPenalty[graphicsPreset] || 0.72) * (is4k ? 0.75 : is1440p ? 0.9 : 1);
+  }
+
+  if (gpu.vram <= 6) {
+    const presetPenalty = {
+      low: 0.96,
+      medium: 0.88,
+      high: 0.76
+    };
+
+    return (presetPenalty[graphicsPreset] || 0.88) * (is4k ? 0.82 : is1440p ? 0.95 : 1);
+  }
+
+  if (gpu.vram === 8 && is4k) {
+    const presetPenalty = {
+      low: 0.9,
+      medium: 0.84,
+      high: 0.75
+    };
+
+    return presetPenalty[graphicsPreset] || 0.84;
+  }
+
+  if (gpu.vram <= 11 && is4k && graphicsPreset === "high") {
+    return 0.88;
+  }
+
+  if (gpu.vram === 12 && is4k && graphicsPreset === "high") {
+    return 0.95;
+  }
+
+  if (gpu.vram === 8 && is1440p && graphicsPreset === "high") {
+    return 0.94;
+  }
+
+  if (graphicsPreset === "high") {
+    if (gpu.vram >= 16) {
+      return 1.06;
+    }
+
+    if (gpu.vram >= 12) {
+      return 1.03;
+    }
+  }
+
+  if (graphicsPreset === "medium" && gpu.vram >= 16) {
+    return 1.02;
+  }
+
+  return 1;
+}
+
+function dlssMultiplier(gpu) {
+  if (!gpu.dlss) {
+    return 1;
+  }
+
+  return dlssMultipliers[fpsControls.dlss.value] || 1;
+}
+
+function frameGenerationMultiplier(gpu) {
+  if (fpsControls.frameGeneration.value !== "on" || !gpu.frameGen) {
+    return 1;
+  }
+
+  return fpsControls.device.value === "laptop" ? 1.34 : 1.42;
+}
+
 function estimateFps(graphicsPreset) {
   const gpu = selectedGpu();
   const cpu = selectedCpu();
-  const resolutionMultiplier = fpsControls.resolution.value === "1440" ? 0.72 : 1;
   const graphicsMultiplier = graphicsMultipliers[graphicsPreset] || 1;
-  const dlssMultiplier = dlssMultipliers[fpsControls.dlss.value] || 1;
-  const deviceMultiplier = fpsControls.device.value === "laptop" ? 0.95 : 1;
-  const frameGenMultiplier = fpsControls.frameGeneration.value === "on" && gpu.frameGen ? 1.28 : 1;
+  const deviceMultiplier = fpsControls.device.value === "laptop" ? 0.94 : 1;
 
-  return gpu.base * cpu.multiplier * ramMultiplier() * vramMultiplier(gpu, graphicsPreset) * resolutionMultiplier * graphicsMultiplier * dlssMultiplier * deviceMultiplier * frameGenMultiplier;
+  return gpu.base * cpu.multiplier * ramMultiplier() * vramMultiplier(gpu, graphicsPreset) * resolutionMultiplier() * graphicsMultiplier * dlssMultiplier(gpu) * deviceMultiplier;
+}
+
+function estimateDisplayedFps(realFps) {
+  return realFps * frameGenerationMultiplier(selectedGpu());
 }
 
 function updateFrameGenerationState() {
   const gpu = selectedGpu();
   const canUseFrameGen = Boolean(gpu?.frameGen);
+  const canUseDlss = Boolean(gpu?.dlss);
 
   fpsControls.frameGeneration.disabled = !canUseFrameGen;
 
   if (!canUseFrameGen) {
     fpsControls.frameGeneration.value = "off";
+  }
+
+  fpsControls.dlss.disabled = !canUseDlss;
+
+  if (!canUseDlss) {
+    fpsControls.dlss.value = "off";
   }
 
   if (gpuVramEl) {
@@ -645,12 +822,15 @@ function updateFrameGenerationState() {
 function updateFpsEstimate() {
   updateFrameGenerationState();
 
-  const selectedValue = estimateFps(fpsControls.graphics.value);
+  const selectedRealValue = estimateFps(fpsControls.graphics.value);
+  const selectedDisplayedValue = estimateDisplayedFps(selectedRealValue);
   const lowValue = estimateFps("low");
   const mediumValue = estimateFps("medium");
   const highValue = estimateFps("high");
+  const frameGenActive = fpsControls.frameGeneration.value === "on" && selectedGpu().frameGen;
 
-  fpsRangeEl.textContent = `${formatRange(selectedValue)} FPS`;
+  fpsRangeEl.textContent = `${formatRange(selectedRealValue)} FPS`;
+  fpsDisplayedEl.textContent = frameGenActive ? `${formatRange(selectedDisplayedValue)} FPS` : "Off";
   fpsLowEl.textContent = formatRange(lowValue);
   fpsMediumEl.textContent = formatRange(mediumValue);
   fpsHighEl.textContent = formatRange(highValue);

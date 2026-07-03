@@ -201,6 +201,7 @@
             <select id="resolution">
               <option value="1080">1080p</option>
               <option value="1440">1440p</option>
+              <option value="2160">4K</option>
             </select>
           </label>
           <label>
@@ -229,14 +230,23 @@
           </label>
         </div>
         <div class="fps-result">
-          <span data-i18n="estimatedFps">Estimated FPS</span>
-          <strong id="fps-range">90-120 FPS</strong>
+          <div class="fps-summary">
+            <div>
+              <span data-i18n="realFps">Real FPS</span>
+              <strong id="fps-range">90-120 FPS</strong>
+            </div>
+            <div>
+              <span data-i18n="displayedFps">With Frame Generation</span>
+              <strong id="fps-displayed">Off</strong>
+            </div>
+          </div>
           <div class="fps-breakdown" aria-label="FPS by graphics preset">
             <p><span>Low</span><strong id="fps-low">120-150</strong></p>
             <p><span>Medium</span><strong id="fps-medium">100-130</strong></p>
             <p><span>High</span><strong id="fps-high">80-110</strong></p>
           </div>
           <p class="sim-warning" id="framegen-warning" data-i18n="framegenWarning">Frame Generation works only on RTX 40/50 series GPUs.</p>
+          <p class="sim-note" id="framegen-note" data-i18n="framegenNote">Frame Generation is displayed FPS, not real input FPS.</p>
           <p class="sim-disclaimer" data-i18n="fpsDisclaimer">This is an estimate, real FPS depends on map, driver, settings, laptop power limit and temperature.</p>
         </div>
       </div>

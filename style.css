@@ -764,17 +764,34 @@ h2 {
   background: rgba(7, 10, 8, 0.7);
 }
 
-.fps-result > span,
+.fps-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.fps-summary > div {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 0.85rem;
+  border: 1px solid rgba(160, 255, 190, 0.14);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.fps-summary span,
 .fps-breakdown span {
   color: var(--muted);
   font-weight: 800;
 }
 
-.fps-result > strong {
+.fps-summary strong {
   color: var(--green-2);
   font-family: Rajdhani, Inter, sans-serif;
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
   line-height: 0.95;
+  overflow-wrap: anywhere;
 }
 
 .fps-breakdown {
@@ -796,6 +813,7 @@ h2 {
 }
 
 .sim-warning,
+.sim-note,
 .sim-disclaimer {
   margin: 0;
   color: var(--muted);
@@ -811,6 +829,10 @@ h2 {
 
 .sim-warning.is-visible {
   display: block;
+}
+
+.sim-note {
+  color: rgba(244, 255, 247, 0.72);
 }
 
 .loadout-card,
@@ -1160,6 +1182,7 @@ h2 {
   .settings-grid,
   .comment-grid,
   .roadmap-grid,
+  .fps-summary,
   .loadout-result {
     grid-template-columns: 1fr;
   }
