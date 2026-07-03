@@ -32,6 +32,8 @@ const translations = {
     simulatorEyebrow: "Warzone FPS Simulator",
     simulatorTitle: "PC qismlarini tanlang va taxminiy Warzone FPSni ko‘ring.",
     deviceType: "Device Type",
+    systemRam: "System RAM",
+    gpuVram: "GPU VRAM",
     simResolution: "Resolution",
     graphics: "Graphics",
     frameGeneration: "Frame Generation",
@@ -128,6 +130,8 @@ const translations = {
     simulatorEyebrow: "Warzone FPS Simulator",
     simulatorTitle: "Выберите части ПК и посмотрите примерный FPS в Warzone.",
     deviceType: "Тип устройства",
+    systemRam: "Системная RAM",
+    gpuVram: "GPU VRAM",
     simResolution: "Разрешение",
     graphics: "Графика",
     frameGeneration: "Frame Generation",
@@ -224,6 +228,8 @@ const translations = {
     simulatorEyebrow: "Warzone FPS Simulator",
     simulatorTitle: "Choose your PC parts and see estimated Warzone FPS.",
     deviceType: "Device Type",
+    systemRam: "System RAM",
+    gpuVram: "GPU VRAM",
     simResolution: "Resolution",
     graphics: "Graphics",
     frameGeneration: "Frame Generation",
@@ -291,27 +297,53 @@ const translations = {
   }
 };
 
-const gpuScores = {
-  rtx3050Laptop: { base: 72, frameGen: false },
-  rtx4050Laptop: { base: 98, frameGen: true },
-  rtx4060Laptop: { base: 118, frameGen: true },
-  rtx3060: { base: 108, frameGen: false },
-  rtx3060Ti: { base: 132, frameGen: false },
-  rtx4060: { base: 128, frameGen: true },
-  rtx4060Ti: { base: 152, frameGen: true },
-  rtx4070: { base: 178, frameGen: true },
-  rtx4070Super: { base: 205, frameGen: true },
-  rtx5070: { base: 242, frameGen: true }
-};
-
-const cpuMultipliers = {
-  r5600: 0.95,
-  r7500f: 1.05,
-  r7435hs: 0.92,
-  i512400f: 0.96,
-  i513420h: 0.9,
-  i514600kf: 1.08,
-  r7800x3d: 1.18
+const pcParts = {
+  desktop: {
+    cpus: [
+      { value: "r5600", label: "Ryzen 5 5600", multiplier: 0.94 },
+      { value: "r7500f", label: "Ryzen 5 7500F", multiplier: 1.05 },
+      { value: "r5700x", label: "Ryzen 7 5700X", multiplier: 0.99 },
+      { value: "r7800x3d", label: "Ryzen 7 7800X3D", multiplier: 1.2 },
+      { value: "i512400f", label: "Intel i5-12400F", multiplier: 0.96 },
+      { value: "i513400f", label: "Intel i5-13400F", multiplier: 1 },
+      { value: "i514600k", label: "Intel i5-14600K", multiplier: 1.1 },
+      { value: "i712700f", label: "Intel i7-12700F", multiplier: 1.06 },
+      { value: "i713700k", label: "Intel i7-13700K", multiplier: 1.12 }
+    ],
+    gpus: [
+      { value: "gtx1660Super", label: "GTX 1660 Super 6GB", base: 72, vram: 6, frameGen: false },
+      { value: "rtx2060", label: "RTX 2060 6GB", base: 82, vram: 6, frameGen: false },
+      { value: "rtx3060", label: "RTX 3060 12GB", base: 108, vram: 12, frameGen: false },
+      { value: "rtx3060Ti", label: "RTX 3060 Ti 8GB", base: 132, vram: 8, frameGen: false },
+      { value: "rtx4060", label: "RTX 4060 8GB", base: 128, vram: 8, frameGen: true },
+      { value: "rtx4060Ti", label: "RTX 4060 Ti 8GB", base: 152, vram: 8, frameGen: true },
+      { value: "rtx4070", label: "RTX 4070 12GB", base: 178, vram: 12, frameGen: true },
+      { value: "rtx4070Super", label: "RTX 4070 Super 12GB", base: 205, vram: 12, frameGen: true },
+      { value: "rtx4070TiSuper", label: "RTX 4070 Ti Super 16GB", base: 224, vram: 16, frameGen: true },
+      { value: "rtx5070", label: "RTX 5070 12GB", base: 242, vram: 12, frameGen: true }
+    ]
+  },
+  laptop: {
+    cpus: [
+      { value: "r56600h", label: "Ryzen 5 6600H", multiplier: 0.86 },
+      { value: "r57535hs", label: "Ryzen 5 7535HS", multiplier: 0.89 },
+      { value: "r7435hs", label: "Ryzen 7 7435HS", multiplier: 0.92 },
+      { value: "r77840hs", label: "Ryzen 7 7840HS", multiplier: 0.98 },
+      { value: "i512450h", label: "Intel i5-12450H", multiplier: 0.86 },
+      { value: "i513420h", label: "Intel i5-13420H", multiplier: 0.9 },
+      { value: "i712650h", label: "Intel i7-12650H", multiplier: 0.94 },
+      { value: "i713620h", label: "Intel i7-13620H", multiplier: 0.97 },
+      { value: "i714650hx", label: "Intel i7-14650HX", multiplier: 1.04 }
+    ],
+    gpus: [
+      { value: "rtx3050Laptop4", label: "RTX 3050 Laptop 4GB", base: 58, vram: 4, frameGen: false },
+      { value: "rtx3050Laptop6", label: "RTX 3050 Laptop 6GB", base: 66, vram: 6, frameGen: false },
+      { value: "rtx4050Laptop", label: "RTX 4050 Laptop 6GB", base: 94, vram: 6, frameGen: true },
+      { value: "rtx4060Laptop", label: "RTX 4060 Laptop 8GB", base: 116, vram: 8, frameGen: true },
+      { value: "rtx4070Laptop", label: "RTX 4070 Laptop 8GB", base: 138, vram: 8, frameGen: true },
+      { value: "rtx5070Laptop", label: "RTX 5070 Laptop 8GB", base: 160, vram: 8, frameGen: true }
+    ]
+  }
 };
 
 const graphicsMultipliers = {
@@ -346,6 +378,7 @@ const fpsRangeEl = document.querySelector("#fps-range");
 const fpsLowEl = document.querySelector("#fps-low");
 const fpsMediumEl = document.querySelector("#fps-medium");
 const fpsHighEl = document.querySelector("#fps-high");
+const gpuVramEl = document.querySelector("#gpu-vram");
 const framegenWarningEl = document.querySelector("#framegen-warning");
 const loadoutStorageKey = "warzoneuz-loadouts";
 const loadoutControls = {
@@ -503,27 +536,107 @@ function formatRange(value) {
   return `${low}-${high}`;
 }
 
+function selectedDeviceParts() {
+  return pcParts[fpsControls.device.value] || pcParts.desktop;
+}
+
+function selectedGpu() {
+  const parts = selectedDeviceParts();
+  return parts.gpus.find((gpu) => gpu.value === fpsControls.gpu.value) || parts.gpus[0];
+}
+
+function selectedCpu() {
+  const parts = selectedDeviceParts();
+  return parts.cpus.find((cpu) => cpu.value === fpsControls.cpu.value) || parts.cpus[0];
+}
+
+function renderPartOptions(select, options) {
+  const previousValue = select.value;
+  select.innerHTML = "";
+
+  options.forEach((option) => {
+    const optionEl = document.createElement("option");
+    optionEl.value = option.value;
+    optionEl.textContent = option.label;
+    select.appendChild(optionEl);
+  });
+
+  if (options.some((option) => option.value === previousValue)) {
+    select.value = previousValue;
+  }
+}
+
+function updateDeviceOptions() {
+  const parts = selectedDeviceParts();
+
+  renderPartOptions(fpsControls.gpu, parts.gpus);
+  renderPartOptions(fpsControls.cpu, parts.cpus);
+}
+
+function ramMultiplier() {
+  const ram = Number(fpsControls.ram.value);
+
+  if (ram <= 8) {
+    return 0.82;
+  }
+
+  if (ram >= 32) {
+    return 1.04;
+  }
+
+  if (ram >= 24) {
+    return 1.02;
+  }
+
+  return 1;
+}
+
+function vramMultiplier(gpu, graphicsPreset) {
+  if (graphicsPreset === "high") {
+    if (gpu.vram <= 4) {
+      return 0.76;
+    }
+
+    if (gpu.vram <= 6) {
+      return 0.88;
+    }
+  }
+
+  if (graphicsPreset === "medium" && gpu.vram <= 4) {
+    return 0.88;
+  }
+
+  if (fpsControls.resolution.value === "1440" && graphicsPreset === "high" && gpu.vram >= 12) {
+    return 1.03;
+  }
+
+  return 1;
+}
+
 function estimateFps(graphicsPreset) {
-  const gpu = gpuScores[fpsControls.gpu.value];
-  const cpuMultiplier = cpuMultipliers[fpsControls.cpu.value] || 1;
-  const ramMultiplier = fpsControls.ram.value === "32" ? 1.05 : 1;
+  const gpu = selectedGpu();
+  const cpu = selectedCpu();
   const resolutionMultiplier = fpsControls.resolution.value === "1440" ? 0.72 : 1;
   const graphicsMultiplier = graphicsMultipliers[graphicsPreset] || 1;
   const dlssMultiplier = dlssMultipliers[fpsControls.dlss.value] || 1;
-  const deviceMultiplier = fpsControls.device.value === "laptop" ? 0.9 : 1;
+  const deviceMultiplier = fpsControls.device.value === "laptop" ? 0.95 : 1;
   const frameGenMultiplier = fpsControls.frameGeneration.value === "on" && gpu.frameGen ? 1.28 : 1;
 
-  return gpu.base * cpuMultiplier * ramMultiplier * resolutionMultiplier * graphicsMultiplier * dlssMultiplier * deviceMultiplier * frameGenMultiplier;
+  return gpu.base * cpu.multiplier * ramMultiplier() * vramMultiplier(gpu, graphicsPreset) * resolutionMultiplier * graphicsMultiplier * dlssMultiplier * deviceMultiplier * frameGenMultiplier;
 }
 
 function updateFrameGenerationState() {
-  const gpu = gpuScores[fpsControls.gpu.value];
+  const gpu = selectedGpu();
   const canUseFrameGen = Boolean(gpu?.frameGen);
 
   fpsControls.frameGeneration.disabled = !canUseFrameGen;
 
   if (!canUseFrameGen) {
     fpsControls.frameGeneration.value = "off";
+  }
+
+  if (gpuVramEl) {
+    gpuVramEl.textContent = `${gpu.vram}GB`;
   }
 
   framegenWarningEl.classList.toggle("is-visible", !canUseFrameGen);
@@ -786,8 +899,14 @@ function setMascotState(mascot, state) {
 }
 
 function moveMascot(mascot, mascotState, x) {
+  const sprite = mascot.querySelector(".mascot-sprite");
+
   mascotState.x = x;
-  mascot.style.transform = `translateX(${Math.round(mascotState.x)}px) scaleX(${mascotState.direction})`;
+  mascot.style.transform = `translateX(${Math.round(mascotState.x)}px)`;
+
+  if (sprite) {
+    sprite.style.setProperty("--mascot-direction", mascotState.direction);
+  }
 }
 
 function stageMaxX(mascot) {
@@ -891,8 +1010,15 @@ copyButtons.forEach((button) => {
   button.addEventListener("click", copyServerRequest);
 });
 
-Object.values(fpsControls).forEach((control) => {
-  control.addEventListener("change", updateFpsEstimate);
+fpsControls.device.addEventListener("change", () => {
+  updateDeviceOptions();
+  updateFpsEstimate();
+});
+
+Object.entries(fpsControls).forEach(([key, control]) => {
+  if (key !== "device") {
+    control.addEventListener("change", updateFpsEstimate);
+  }
 });
 
 Object.values(statControls).forEach((input) => {
@@ -974,6 +1100,7 @@ document.querySelectorAll("[data-copy-template]").forEach((button) => {
 });
 
 translatePage(currentLanguage);
+updateDeviceOptions();
 updateFpsEstimate();
 updateLoadoutScore();
 updatePingReport();

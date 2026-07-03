@@ -69,27 +69,31 @@
       </div>
       <div class="mascot-stage" aria-hidden="true">
         <span class="mascot mascot--ghost is-idle" data-mascot="ghost">
-          <span class="mascot-body">
-            <span class="mascot-head masked"></span>
-            <span class="mascot-torso"></span>
-            <span class="mascot-arm arm-left"></span>
-            <span class="mascot-arm arm-right"></span>
-            <span class="mascot-leg leg-left"></span>
-            <span class="mascot-leg leg-right"></span>
+          <span class="mascot-sprite">
+            <span class="mascot-body">
+              <span class="mascot-head masked"></span>
+              <span class="mascot-torso"></span>
+              <span class="mascot-arm arm-left"></span>
+              <span class="mascot-arm arm-right"></span>
+              <span class="mascot-leg leg-left"></span>
+              <span class="mascot-leg leg-right"></span>
+            </span>
           </span>
-          <span class="mascot-label">Ghost</span>
+          <span class="mascot-name">Ghost</span>
         </span>
         <span class="mascot mascot--valeria is-idle" data-mascot="valeria">
-          <span class="mascot-body">
-            <span class="mascot-head tactical"></span>
-            <span class="mascot-hair"></span>
-            <span class="mascot-torso"></span>
-            <span class="mascot-arm arm-left"></span>
-            <span class="mascot-arm arm-right"></span>
-            <span class="mascot-leg leg-left"></span>
-            <span class="mascot-leg leg-right"></span>
+          <span class="mascot-sprite">
+            <span class="mascot-body">
+              <span class="mascot-head tactical"></span>
+              <span class="mascot-hair"></span>
+              <span class="mascot-torso"></span>
+              <span class="mascot-arm arm-left"></span>
+              <span class="mascot-arm arm-right"></span>
+              <span class="mascot-leg leg-left"></span>
+              <span class="mascot-leg leg-right"></span>
+            </span>
           </span>
-          <span class="mascot-label">Valeria</span>
+          <span class="mascot-name">Valeria</span>
         </span>
       </div>
     </section>
@@ -152,35 +156,44 @@
           <label>
             <span>GPU</span>
             <select id="gpu">
-              <option value="rtx3050Laptop">RTX 3050 Laptop</option>
-              <option value="rtx4050Laptop">RTX 4050 Laptop</option>
-              <option value="rtx4060Laptop">RTX 4060 Laptop</option>
+              <option value="gtx1660Super">GTX 1660 Super 6GB</option>
+              <option value="rtx2060">RTX 2060 6GB</option>
               <option value="rtx3060">RTX 3060 12GB</option>
-              <option value="rtx3060Ti">RTX 3060 Ti</option>
-              <option value="rtx4060">RTX 4060</option>
-              <option value="rtx4060Ti">RTX 4060 Ti</option>
-              <option value="rtx4070">RTX 4070</option>
-              <option value="rtx4070Super">RTX 4070 Super</option>
-              <option value="rtx5070">RTX 5070</option>
+              <option value="rtx3060Ti">RTX 3060 Ti 8GB</option>
+              <option value="rtx4060">RTX 4060 8GB</option>
+              <option value="rtx4060Ti">RTX 4060 Ti 8GB</option>
+              <option value="rtx4070">RTX 4070 12GB</option>
+              <option value="rtx4070Super">RTX 4070 Super 12GB</option>
+              <option value="rtx4070TiSuper">RTX 4070 Ti Super 16GB</option>
+              <option value="rtx5070">RTX 5070 12GB</option>
             </select>
           </label>
+          <div class="vram-readout" aria-live="polite">
+            <span data-i18n="gpuVram">GPU VRAM</span>
+            <strong id="gpu-vram">6GB</strong>
+          </div>
           <label>
             <span>CPU</span>
             <select id="cpu">
               <option value="r5600">Ryzen 5 5600</option>
               <option value="r7500f">Ryzen 5 7500F</option>
-              <option value="r7435hs">Ryzen 7 7435HS</option>
-              <option value="i512400f">i5-12400F</option>
-              <option value="i513420h">i5-13420H</option>
-              <option value="i514600kf">i5-14600KF</option>
+              <option value="r5700x">Ryzen 7 5700X</option>
               <option value="r7800x3d">Ryzen 7 7800X3D</option>
+              <option value="i512400f">Intel i5-12400F</option>
+              <option value="i513400f">Intel i5-13400F</option>
+              <option value="i514600k">Intel i5-14600K</option>
+              <option value="i712700f">Intel i7-12700F</option>
+              <option value="i713700k">Intel i7-13700K</option>
             </select>
           </label>
           <label>
-            <span>RAM</span>
+            <span data-i18n="systemRam">System RAM</span>
             <select id="ram">
+              <option value="8">8GB</option>
               <option value="16">16GB</option>
+              <option value="24">24GB</option>
               <option value="32">32GB</option>
+              <option value="64">64GB</option>
             </select>
           </label>
           <label>
