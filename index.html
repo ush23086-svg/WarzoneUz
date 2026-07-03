@@ -228,6 +228,34 @@
               <option value="on">On</option>
             </select>
           </label>
+          <label>
+            <span data-i18n="monitorHz">Monitor Hz</span>
+            <select id="monitor-hz">
+              <option value="60">60Hz</option>
+              <option value="75">75Hz</option>
+              <option value="100">100Hz</option>
+              <option value="120">120Hz</option>
+              <option value="144" selected>144Hz</option>
+              <option value="165">165Hz</option>
+              <option value="180">180Hz</option>
+              <option value="200">200Hz</option>
+              <option value="240">240Hz</option>
+              <option value="280">280Hz</option>
+              <option value="300">300Hz</option>
+              <option value="360">360Hz</option>
+              <option value="480">480Hz</option>
+              <option value="500">500Hz</option>
+              <option value="540">540Hz</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="monitorSize">Monitor Size</span>
+            <select id="monitor-size">
+              <option value="24">24 inch</option>
+              <option value="27" selected>27 inch</option>
+              <option value="32">32 inch</option>
+            </select>
+          </label>
         </div>
         <div class="fps-result">
           <div class="fps-summary">
@@ -239,12 +267,22 @@
               <span data-i18n="displayedFps">With Frame Generation</span>
               <strong id="fps-displayed">Off</strong>
             </div>
+            <div>
+              <span data-i18n="monitorHz">Monitor Hz</span>
+              <strong id="monitor-hz-result">144Hz</strong>
+            </div>
+            <div>
+              <span data-i18n="visibleSmoothness">Visible Smoothness</span>
+              <strong id="visible-smoothness">Good match</strong>
+            </div>
           </div>
           <div class="fps-breakdown" aria-label="FPS by graphics preset">
             <p><span>Low</span><strong id="fps-low">120-150</strong></p>
             <p><span>Medium</span><strong id="fps-medium">100-130</strong></p>
             <p><span>High</span><strong id="fps-high">80-110</strong></p>
           </div>
+          <p class="monitor-note" id="monitor-note">Good match.</p>
+          <p class="monitor-note" id="monitor-clarity-note">27 inch + 1440p is very good.</p>
           <p class="sim-warning" id="framegen-warning" data-i18n="framegenWarning">Frame Generation works only on RTX 40/50 series GPUs.</p>
           <p class="sim-note" id="framegen-note" data-i18n="framegenNote">Frame Generation is displayed FPS, not real input FPS.</p>
           <p class="sim-note" data-i18n="peakNote">Peak FPS can be higher in lighter scenes; the main result is average Real FPS.</p>
