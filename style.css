@@ -311,7 +311,7 @@ h2 {
   text-transform: uppercase;
 }
 
-.patrol-lane {
+.mascot-stage {
   position: absolute;
   right: 0;
   bottom: 0.65rem;
@@ -320,6 +320,7 @@ h2 {
   overflow: hidden;
   border-bottom: 1px solid rgba(53, 240, 111, 0.16);
   opacity: 0.95;
+  pointer-events: none;
 }
 
 .mascot {
@@ -330,13 +331,9 @@ h2 {
   gap: 0.22rem;
   filter: drop-shadow(0 0 10px rgba(53, 240, 111, 0.5));
   transform-origin: 50% 100%;
-  animation: mascot-patrol 24s linear infinite;
-}
-
-.mascot-valeria {
-  animation-name: mascot-chase;
-  animation-delay: -8s;
-  animation-duration: 28s;
+  transition: transform 900ms cubic-bezier(0.22, 0.9, 0.32, 1);
+  will-change: transform;
+  pointer-events: none;
 }
 
 .mascot-body {
@@ -344,7 +341,8 @@ h2 {
   display: block;
   width: 72px;
   height: 78px;
-  animation: mascot-idle 760ms ease-in-out infinite alternate;
+  transform-origin: 50% 100%;
+  animation: mascot-breathe 1200ms ease-in-out infinite alternate;
 }
 
 .mascot-head {
@@ -360,7 +358,7 @@ h2 {
   transform: translateX(-50%);
 }
 
-.mascot-head.masked {
+.mascot--ghost .mascot-head {
   background:
     radial-gradient(circle at 38% 46%, #070a08 0 2px, transparent 2.5px),
     radial-gradient(circle at 62% 46%, #070a08 0 2px, transparent 2.5px),
@@ -368,7 +366,7 @@ h2 {
   box-shadow: inset 0 0 0 4px #101712;
 }
 
-.mascot-head.masked::before {
+.mascot--ghost .mascot-head::before {
   position: absolute;
   inset: -8px -5px 9px;
   z-index: -1;
@@ -377,12 +375,13 @@ h2 {
   background: #080b09;
 }
 
-.mascot-head.tactical {
+.mascot--valeria .mascot-head {
   border-radius: 48% 48% 44% 44%;
   background:
     radial-gradient(circle at 40% 45%, #dce8df 0 2px, transparent 2.5px),
     radial-gradient(circle at 62% 45%, #dce8df 0 2px, transparent 2.5px),
-    linear-gradient(180deg, #1b211d 0 36%, #2b201b 37% 100%);
+    linear-gradient(180deg, #251111 0 36%, #2b201b 37% 100%);
+  border-color: rgba(255, 120, 120, 0.8);
 }
 
 .mascot-hair {
@@ -393,7 +392,7 @@ h2 {
   width: 32px;
   height: 38px;
   border-radius: 55% 35% 45% 50%;
-  background: #15100e;
+  background: #190b0c;
   transform: rotate(12deg);
 }
 
@@ -453,8 +452,11 @@ h2 {
   animation-delay: -260ms;
 }
 
-.mascot-valeria .mascot-torso {
-  border-color: rgba(156, 255, 183, 0.72);
+.mascot--valeria .mascot-torso {
+  border-color: rgba(255, 96, 96, 0.72);
+  background:
+    linear-gradient(90deg, transparent 45%, rgba(255, 125, 125, 0.62) 46% 54%, transparent 55%),
+    linear-gradient(180deg, #211313, #0c110d);
 }
 
 .mascot-label {
@@ -471,73 +473,62 @@ h2 {
   opacity: 1;
 }
 
-@keyframes mascot-patrol {
-  0% {
-    transform: translateX(-90px) scaleX(1);
-  }
-
-  38% {
-    transform: translateX(43vw) scaleX(1);
-  }
-
-  46% {
-    transform: translateX(43vw) scaleX(1);
-  }
-
-  50% {
-    transform: translateX(43vw) scaleX(-1);
-  }
-
-  88% {
-    transform: translateX(8vw) scaleX(-1);
-  }
-
-  94% {
-    transform: translateX(8vw) scaleX(-1);
-  }
-
-  100% {
-    transform: translateX(-90px) scaleX(1);
-  }
+.is-idle .mascot-body {
+  animation-name: mascot-breathe;
+  animation-duration: 1200ms;
 }
 
-@keyframes mascot-chase {
-  0% {
-    transform: translateX(-150px) scaleX(1);
-  }
-
-  42% {
-    transform: translateX(55vw) scaleX(1);
-  }
-
-  48% {
-    transform: translateX(55vw) scaleX(1);
-  }
-
-  52% {
-    transform: translateX(55vw) scaleX(-1);
-  }
-
-  86% {
-    transform: translateX(18vw) scaleX(-1);
-  }
-
-  94% {
-    transform: translateX(18vw) scaleX(-1);
-  }
-
-  100% {
-    transform: translateX(-150px) scaleX(1);
-  }
+.is-walking .mascot-body {
+  animation-name: mascot-walk-bob;
+  animation-duration: 480ms;
 }
 
-@keyframes mascot-idle {
+.is-walking .mascot-arm,
+.is-walking .mascot-leg {
+  animation-play-state: running;
+}
+
+.is-idle .mascot-arm,
+.is-idle .mascot-leg {
+  animation-duration: 1300ms;
+}
+
+.is-jumping .mascot-body {
+  animation: mascot-jump 560ms ease-out 1;
+}
+
+.is-jumping .mascot-arm {
+  transform: rotate(-32deg);
+}
+
+@keyframes mascot-breathe {
   from {
-    transform: translateY(0);
+    transform: translateY(0) scaleY(1);
   }
 
   to {
-    transform: translateY(-5px);
+    transform: translateY(-3px) scaleY(1.025);
+  }
+}
+
+@keyframes mascot-walk-bob {
+  from {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  to {
+    transform: translateY(-4px) rotate(1deg);
+  }
+}
+
+@keyframes mascot-jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(-18px);
   }
 }
 
@@ -1073,7 +1064,7 @@ h2 {
     min-height: 340px;
   }
 
-  .patrol-lane {
+  .mascot-stage {
     display: none;
   }
 
@@ -1157,5 +1148,21 @@ h2 {
     left: 0.75rem;
     max-width: none;
     text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot {
+    transition-duration: 2400ms;
+  }
+
+  .mascot-body,
+  .mascot-arm,
+  .mascot-leg {
+    animation-duration: 2200ms;
+  }
+
+  .is-jumping .mascot-body {
+    animation: none;
   }
 }

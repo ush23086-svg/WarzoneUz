@@ -376,6 +376,9 @@ const pingReportControls = {
   route: document.querySelector("#report-route")
 };
 const pingReportOutputEl = document.querySelector("#ping-report-output");
+const mascotStage = document.querySelector(".mascot-stage");
+const mascotElements = Array.from(document.querySelectorAll(".mascot"));
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 let currentLanguage = detectLanguage();
 let toastTimer;
 
@@ -773,6 +776,111 @@ function copyText(text, button) {
   showCopiedButton(button, dictionary.copied);
 }
 
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function setMascotState(mascot, state) {
+  mascot.classList.remove("is-idle", "is-walking", "is-jumping");
+  mascot.classList.add(`is-${state}`);
+}
+
+function moveMascot(mascot, mascotState, x) {
+  mascotState.x = x;
+  mascot.style.transform = `translateX(${Math.round(mascotState.x)}px) scaleX(${mascotState.direction})`;
+}
+
+function stageMaxX(mascot) {
+  if (!mascotStage) {
+    return 0;
+  }
+
+  return Math.max(0, mascotStage.clientWidth - mascot.offsetWidth - 8);
+}
+
+function scheduleMascot(mascot, mascotState) {
+  const delay = reducedMotionQuery.matches ? 5500 : 1200 + Math.random() * 2400;
+
+  window.setTimeout(() => {
+    tickMascot(mascot, mascotState);
+  }, delay);
+}
+
+function tickMascot(mascot, mascotState) {
+  if (!mascotStage || window.getComputedStyle(mascotStage).display === "none") {
+    return;
+  }
+
+  const maxX = stageMaxX(mascot);
+
+  if (reducedMotionQuery.matches) {
+    setMascotState(mascot, "idle");
+    moveMascot(mascot, mascotState, clamp(mascotState.x, 0, maxX));
+    scheduleMascot(mascot, mascotState);
+    return;
+  }
+
+  const roll = Math.random();
+
+  if (roll < 0.22) {
+    setMascotState(mascot, "jumping");
+    window.setTimeout(() => setMascotState(mascot, "idle"), 620);
+  } else if (roll < 0.72) {
+    const distance = 80 + Math.random() * 190;
+    const nextDirection = Math.random() < 0.28 ? mascotState.direction * -1 : mascotState.direction;
+    let nextX = mascotState.x + distance * nextDirection;
+
+    if (nextX <= 0 || nextX >= maxX) {
+      mascotState.direction *= -1;
+      nextX = clamp(mascotState.x + distance * mascotState.direction, 0, maxX);
+    } else {
+      mascotState.direction = nextDirection;
+    }
+
+    setMascotState(mascot, "walking");
+    moveMascot(mascot, mascotState, nextX);
+    window.setTimeout(() => setMascotState(mascot, "idle"), 950);
+  } else {
+    if (Math.random() < 0.35) {
+      mascotState.direction *= -1;
+      moveMascot(mascot, mascotState, mascotState.x);
+    }
+
+    setMascotState(mascot, "idle");
+  }
+
+  scheduleMascot(mascot, mascotState);
+}
+
+function initMascots() {
+  if (!mascotStage || !mascotElements.length) {
+    return;
+  }
+
+  mascotElements.forEach((mascot, index) => {
+    const maxX = stageMaxX(mascot);
+    const mascotState = {
+      x: clamp(index === 0 ? 72 : 210, 0, maxX),
+      direction: index === 0 ? 1 : -1
+    };
+
+    setMascotState(mascot, "idle");
+    moveMascot(mascot, mascotState, mascotState.x);
+    scheduleMascot(mascot, mascotState);
+    mascot._mascotState = mascotState;
+  });
+}
+
+window.addEventListener("resize", () => {
+  mascotElements.forEach((mascot) => {
+    if (!mascot._mascotState) {
+      return;
+    }
+
+    moveMascot(mascot, mascot._mascotState, clamp(mascot._mascotState.x, 0, stageMaxX(mascot)));
+  });
+});
+
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {
     setLanguage(button.dataset.lang);
@@ -870,3 +978,4 @@ updateFpsEstimate();
 updateLoadoutScore();
 updatePingReport();
 renderSavedLoadouts();
+initMascots();
