@@ -1293,7 +1293,23 @@ function generatePingReport() {
   const route = pingReportControls.route.value;
   const platform = pingReportControls.platform.value;
 
-  return `I am from ${city}, ${country}. My ping in Warzone is usually ${ping} on ${platform}, routed through ${route}. Central Asia players need closer servers.`;
+  return `I'm a ${platform} Warzone player from ${city}, ${country}. My connection is usually ${ping} while being routed through ${route}. At this latency, gunfights, hit registration and competitive gameplay are severely affected.
+
+This is not just one player's problem. Central Asia includes players across Uzbekistan, Kazakhstan, Kyrgyzstan, Tajikistan and Turkmenistan who are forced onto distant server routes.
+
+Activision and Call of Duty, please consider closer regional server infrastructure or a server node in Uzbekistan or Kazakhstan. Give Central Asian players a fair connection.
+
+Central Asia is ready. We just need the servers.`;
+}
+
+function generatePingXReport() {
+  const city = pingReportControls.city.value.trim() || "Samarkand";
+  const country = pingReportControls.country.value.trim() || "Uzbekistan";
+  const ping = pingReportControls.ping.value.trim() || "180-250 ms";
+  const route = pingReportControls.route.value;
+  const platform = pingReportControls.platform.value;
+
+  return `${platform} Warzone from ${city}, ${country}: ${ping} ping via ${route}. Central Asia is forced onto distant routes, hurting hit registration and competitive play. @CallofDuty, we need closer regional servers. #Warzone #CentralAsiaServers`;
 }
 
 function updatePingReport() {
@@ -1511,11 +1527,12 @@ Object.values(pingReportControls).forEach((control) => {
 
 document.querySelectorAll("[data-copy-target]").forEach((button) => {
   button.addEventListener("click", () => {
-    const report = generatePingReport();
     const variants = {
-      ping: report,
-      pingX: `${report} #Warzone #CentralAsiaServers`,
-      pingInstagram: `${report}\n\nPlease support Central Asia players.`
+      ping: generatePingReport(),
+      pingX: generatePingXReport(),
+      pingInstagram: `${generatePingReport()}
+
+#CallOfDuty #Warzone #CentralAsiaServers #Uzbekistan #Kazakhstan #FixThePing`
     };
 
     copyText(variants[button.dataset.copyTarget], button);

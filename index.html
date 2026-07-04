@@ -284,19 +284,19 @@
         </div>
         <div class="fps-result">
           <div class="fps-summary">
-            <div>
+            <div class="fps-metric fps-metric--primary">
               <span data-i18n="realFps">Real FPS</span>
               <strong id="fps-range">90-120 FPS</strong>
             </div>
-            <div>
+            <div class="fps-metric fps-metric--generated">
               <span data-i18n="displayedFps">With Frame Generation</span>
               <strong id="fps-displayed">Off</strong>
             </div>
-            <div>
+            <div class="fps-metric">
               <span data-i18n="monitorHz">Monitor Hz</span>
               <strong id="monitor-hz-result">144Hz</strong>
             </div>
-            <div>
+            <div class="fps-metric">
               <span data-i18n="visibleSmoothness">Visible FPS / Monitor ko‘rsatadigan FPS</span>
               <strong id="visible-smoothness">Good match</strong>
             </div>
@@ -306,13 +306,15 @@
             <p><span>Medium</span><strong id="fps-medium">100-130</strong></p>
             <p><span>High</span><strong id="fps-high">80-110</strong></p>
           </div>
-          <p class="monitor-note" id="monitor-note">Good match.</p>
-          <p class="monitor-note" id="monitor-clarity-note">27 inch + 1440p is very good.</p>
-          <p class="sim-warning" id="framegen-warning" data-i18n="framegenWarning">Frame Generation works only on RTX 40/50 series GPUs.</p>
-          <p class="sim-note" id="upscaler-note" data-i18n="upscalerNote">Upscaler boosts FPS, but lower presets can make the image look softer.</p>
-          <p class="sim-note" id="framegen-note" data-i18n="framegenNote">Frame Generation is displayed FPS, not real input FPS.</p>
-          <p class="sim-note" data-i18n="peakNote">Peak FPS can be higher in lighter scenes; the main result is average Real FPS.</p>
-          <p class="sim-disclaimer" data-i18n="fpsDisclaimer">This is an estimate, real FPS depends on map, driver, settings, laptop power limit and temperature.</p>
+          <div class="fps-advice">
+            <p class="monitor-note" id="monitor-note">Good match.</p>
+            <p class="monitor-note" id="monitor-clarity-note">27 inch + 1440p is very good.</p>
+            <p class="sim-warning" id="framegen-warning" data-i18n="framegenWarning">Frame Generation works only on RTX 40/50 series GPUs.</p>
+            <p class="sim-note" id="upscaler-note" data-i18n="upscalerNote">Upscaler boosts FPS, but lower presets can make the image look softer.</p>
+            <p class="sim-note" id="framegen-note" data-i18n="framegenNote">Frame Generation is displayed FPS, not real input FPS.</p>
+            <p class="sim-note" data-i18n="peakNote">Peak FPS can be higher in lighter scenes; the main result is average Real FPS.</p>
+            <p class="sim-disclaimer" data-i18n="fpsDisclaimer">This is an estimate, real FPS depends on map, driver, settings, laptop power limit and temperature.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -441,7 +443,13 @@
             </select>
           </label>
         </div>
-        <div class="generated-text" id="ping-report-output">I am from Samarkand, Uzbekistan. My ping in Warzone is usually 180-250 ms. Central Asia players need closer servers.</div>
+        <div class="generated-text" id="ping-report-output">I'm a PC Warzone player from Samarkand, Uzbekistan. My connection is usually 180-250 ms while being routed through EU. At this latency, gunfights, hit registration and competitive gameplay are severely affected.
+
+This is not just one player's problem. Central Asia includes players across Uzbekistan, Kazakhstan, Kyrgyzstan, Tajikistan and Turkmenistan who are forced onto distant server routes.
+
+Activision and Call of Duty, please consider closer regional server infrastructure or a server node in Uzbekistan or Kazakhstan. Give Central Asian players a fair connection.
+
+Central Asia is ready. We just need the servers.</div>
         <div class="tool-actions">
           <button class="btn btn-primary" type="button" data-copy-target="ping" data-i18n="copyPingReport">Copy Ping Report</button>
           <button class="btn btn-secondary" type="button" data-copy-target="pingX" data-i18n="copyForX">Copy for X</button>
