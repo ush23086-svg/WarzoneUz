@@ -146,120 +146,131 @@
       </div>
       <div class="simulator-card">
         <div class="simulator-controls">
-          <label>
-            <span data-i18n="deviceType">Device Type</span>
-            <select id="device-type">
-              <option value="desktop">Desktop</option>
-              <option value="laptop">Laptop</option>
-            </select>
-          </label>
-          <label>
-            <span>GPU</span>
-            <select id="gpu">
-              <option value="gtx1660Super">GTX 1660 Super 6GB</option>
-              <option value="rtx2060">RTX 2060 6GB</option>
-              <option value="rtx3060">RTX 3060 12GB</option>
-              <option value="rtx3060Ti">RTX 3060 Ti 8GB</option>
-              <option value="rtx4060">RTX 4060 8GB</option>
-              <option value="rtx4060Ti">RTX 4060 Ti 8GB</option>
-              <option value="rtx4070">RTX 4070 12GB</option>
-              <option value="rtx4070Super">RTX 4070 Super 12GB</option>
-              <option value="rtx4070TiSuper">RTX 4070 Ti Super 16GB</option>
-              <option value="rtx5070">RTX 5070 12GB</option>
-            </select>
-          </label>
-          <div class="vram-readout" aria-live="polite">
-            <span data-i18n="gpuVram">GPU VRAM</span>
-            <strong id="gpu-vram">6GB</strong>
-          </div>
-          <label>
-            <span>CPU</span>
-            <select id="cpu">
-              <option value="r5600">Ryzen 5 5600</option>
-              <option value="r7500f">Ryzen 5 7500F</option>
-              <option value="r5700x">Ryzen 7 5700X</option>
-              <option value="r7800x3d">Ryzen 7 7800X3D</option>
-              <option value="i512400f">Intel i5-12400F</option>
-              <option value="i513400f">Intel i5-13400F</option>
-              <option value="i514600k">Intel i5-14600K</option>
-              <option value="i712700f">Intel i7-12700F</option>
-              <option value="i713700k">Intel i7-13700K</option>
-            </select>
-          </label>
-          <label>
-            <span data-i18n="systemRam">System RAM</span>
-            <select id="ram">
-              <option value="8">8GB</option>
-              <option value="16">16GB</option>
-              <option value="24">24GB</option>
-              <option value="32">32GB</option>
-              <option value="64">64GB</option>
-            </select>
-          </label>
-          <label>
-            <span data-i18n="simResolution">Resolution</span>
-            <select id="resolution">
-              <option value="1080">1080p</option>
-              <option value="1440">1440p</option>
-              <option value="2160">4K</option>
-            </select>
-          </label>
-          <label>
-            <span data-i18n="graphics">Graphics</span>
-            <select id="graphics">
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
-          </label>
-          <label>
-            <span>DLSS</span>
-            <select id="dlss">
-              <option value="off">Off</option>
-              <option value="quality">Quality</option>
-              <option value="balanced">Balanced</option>
-              <option value="performance">Performance</option>
-            </select>
-          </label>
-          <label>
-            <span data-i18n="frameGeneration">Frame Generation</span>
-            <select id="frame-generation">
-              <option value="off">Off</option>
-              <option value="on">On</option>
-            </select>
-          </label>
-          <label>
-            <span data-i18n="monitorSize">Monitor Size</span>
-            <select id="monitor-size">
-              <option value="21.5">21.5 inch</option>
-              <option value="22">22 inch</option>
-              <option value="24">24 inch</option>
-              <option value="25">25 inch</option>
-              <option value="27" selected>27 inch</option>
-              <option value="32">32 inch</option>
-              <option value="34uw">34 inch Ultrawide</option>
-            </select>
-          </label>
-          <label>
-            <span data-i18n="monitorHz">Monitor Hz</span>
-            <select id="monitor-hz">
-              <option value="60">60Hz</option>
-              <option value="75">75Hz</option>
-              <option value="100">100Hz</option>
-              <option value="120">120Hz</option>
-              <option value="144" selected>144Hz</option>
-              <option value="165">165Hz</option>
-              <option value="180">180Hz</option>
-              <option value="200">200Hz</option>
-              <option value="240">240Hz</option>
-              <option value="280">280Hz</option>
-              <option value="300">300Hz</option>
-              <option value="360">360Hz</option>
-              <option value="480">480Hz</option>
-              <option value="500">500Hz</option>
-              <option value="540">540Hz</option>
-            </select>
-          </label>
+          <fieldset class="control-group control-group--hardware">
+            <legend>Hardware</legend>
+            <label>
+              <span data-i18n="deviceType">Device Type</span>
+              <select id="device-type">
+                <option value="desktop">Desktop</option>
+                <option value="laptop">Laptop</option>
+              </select>
+            </label>
+            <label>
+              <span>GPU</span>
+              <select id="gpu">
+                <option value="gtx1660Super">GTX 1660 Super 6GB</option>
+                <option value="rtx2060">RTX 2060 6GB</option>
+                <option value="rtx3060">RTX 3060 12GB</option>
+                <option value="rtx3060Ti">RTX 3060 Ti 8GB</option>
+                <option value="rtx4060">RTX 4060 8GB</option>
+                <option value="rtx4060Ti">RTX 4060 Ti 8GB</option>
+                <option value="rtx4070">RTX 4070 12GB</option>
+                <option value="rtx4070Super">RTX 4070 Super 12GB</option>
+                <option value="rtx4070TiSuper">RTX 4070 Ti Super 16GB</option>
+                <option value="rtx5070">RTX 5070 12GB</option>
+              </select>
+            </label>
+            <label>
+              <span>CPU</span>
+              <select id="cpu">
+                <option value="r5600">Ryzen 5 5600</option>
+                <option value="r7500f">Ryzen 5 7500F</option>
+                <option value="r5700x">Ryzen 7 5700X</option>
+                <option value="r7800x3d">Ryzen 7 7800X3D</option>
+                <option value="i512400f">Intel i5-12400F</option>
+                <option value="i513400f">Intel i5-13400F</option>
+                <option value="i514600k">Intel i5-14600K</option>
+                <option value="i712700f">Intel i7-12700F</option>
+                <option value="i713700k">Intel i7-13700K</option>
+              </select>
+            </label>
+            <div class="vram-readout" aria-live="polite">
+              <span data-i18n="gpuVram">GPU VRAM</span>
+              <strong id="gpu-vram">6GB</strong>
+            </div>
+          </fieldset>
+
+          <fieldset class="control-group">
+            <legend>Memory / Display</legend>
+            <label>
+              <span data-i18n="systemRam">System RAM</span>
+              <select id="ram">
+                <option value="8">8GB</option>
+                <option value="16">16GB</option>
+                <option value="24">24GB</option>
+                <option value="32">32GB</option>
+                <option value="64">64GB</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="simResolution">Resolution</span>
+              <select id="resolution">
+                <option value="1080">1080p</option>
+                <option value="1440">1440p</option>
+                <option value="2160">4K</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="monitorSize">Monitor Size</span>
+              <select id="monitor-size">
+                <option value="21.5">21.5 inch</option>
+                <option value="22">22 inch</option>
+                <option value="24">24 inch</option>
+                <option value="25">25 inch</option>
+                <option value="27" selected>27 inch</option>
+                <option value="32">32 inch</option>
+                <option value="34uw">34 inch Ultrawide</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="monitorHz">Monitor Hz</span>
+              <select id="monitor-hz">
+                <option value="60">60Hz</option>
+                <option value="75">75Hz</option>
+                <option value="100">100Hz</option>
+                <option value="120">120Hz</option>
+                <option value="144" selected>144Hz</option>
+                <option value="165">165Hz</option>
+                <option value="180">180Hz</option>
+                <option value="200">200Hz</option>
+                <option value="240">240Hz</option>
+                <option value="280">280Hz</option>
+                <option value="300">300Hz</option>
+                <option value="360">360Hz</option>
+                <option value="480">480Hz</option>
+                <option value="500">500Hz</option>
+                <option value="540">540Hz</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <fieldset class="control-group control-group--settings">
+            <legend>Settings</legend>
+            <label>
+              <span data-i18n="graphics">Graphics</span>
+              <select id="graphics">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </label>
+            <label>
+              <span>DLSS</span>
+              <select id="dlss">
+                <option value="off">Off</option>
+                <option value="quality">Quality</option>
+                <option value="balanced">Balanced</option>
+                <option value="performance">Performance</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="frameGeneration">Frame Generation</span>
+              <select id="frame-generation">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+              </select>
+            </label>
+          </fieldset>
         </div>
         <div class="fps-result">
           <div class="fps-summary">
