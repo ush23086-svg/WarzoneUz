@@ -36,6 +36,8 @@ const translations = {
     gpuVram: "GPU VRAM",
     simResolution: "Resolution",
     graphics: "Graphics",
+    upscaler: "Upscaler",
+    upscalerPreset: "Upscaler Preset",
     frameGeneration: "Frame Generation",
     monitorHz: "Monitor Hz",
     monitorSize: "Monitor Size",
@@ -44,6 +46,7 @@ const translations = {
     displayedFps: "With Frame Generation",
     visibleSmoothness: "Visible FPS / Monitor ko‘rsatadigan FPS",
     framegenWarning: "Frame Generation faqat RTX 40/50 series GPUlarda ishlaydi.",
+    upscalerNote: "Upscaler FPSni oshiradi, lekin past presetlarda rasm yumshoqroq ko‘rinishi mumkin.",
     framegenNote: "Frame Generation displayed FPS, real input FPS emas.",
     peakNote: "Peak FPS yengil joylarda bundan yuqori bo‘lishi mumkin; asosiy natija average Real FPS.",
     fpsDisclaimer: "Bu taxminiy hisob, real FPS map, driver, settings, laptop power limit, temperature va pingga bog‘liq.",
@@ -140,6 +143,8 @@ const translations = {
     gpuVram: "GPU VRAM",
     simResolution: "Разрешение",
     graphics: "Графика",
+    upscaler: "Upscaler",
+    upscalerPreset: "Пресет Upscaler",
     frameGeneration: "Frame Generation",
     monitorHz: "Monitor Hz",
     monitorSize: "Размер монитора",
@@ -148,6 +153,7 @@ const translations = {
     displayedFps: "С Frame Generation",
     visibleSmoothness: "Visible FPS / монитор",
     framegenWarning: "Frame Generation работает только на RTX 40/50 series GPU.",
+    upscalerNote: "Upscaler повышает FPS, но на низких пресетах картинка может быть мягче.",
     framegenNote: "Frame Generation показывает displayed FPS, а не реальный input FPS.",
     peakNote: "Peak FPS в лёгких сценах может быть выше; главный показатель здесь average Real FPS.",
     fpsDisclaimer: "Это оценка: реальный FPS зависит от карты, драйвера, настроек, power limit ноутбука, температуры и ping.",
@@ -244,6 +250,8 @@ const translations = {
     gpuVram: "GPU VRAM",
     simResolution: "Resolution",
     graphics: "Graphics",
+    upscaler: "Upscaler",
+    upscalerPreset: "Upscaler Preset",
     frameGeneration: "Frame Generation",
     monitorHz: "Monitor Hz",
     monitorSize: "Monitor Size",
@@ -252,6 +260,7 @@ const translations = {
     displayedFps: "With Frame Generation",
     visibleSmoothness: "Visible FPS / Displayed by monitor",
     framegenWarning: "Frame Generation works only on RTX 40/50 series GPUs.",
+    upscalerNote: "Upscaler boosts FPS, but lower presets can make the image look softer.",
     framegenNote: "Frame Generation is displayed FPS, not real input FPS.",
     peakNote: "Peak FPS can be higher in lighter scenes; the main result is average Real FPS.",
     fpsDisclaimer: "This is an estimate, real FPS depends on map, driver, settings, laptop power limit, temperature and ping.",
@@ -453,11 +462,37 @@ const graphicsMultipliers = {
   high: 0.7
 };
 
-const dlssMultipliers = {
-  off: 1,
-  quality: 1.04,
-  balanced: 1.08,
-  performance: 1.14
+const upscalerMultipliers = {
+  native: {
+    quality: 1,
+    balanced: 1,
+    performance: 1,
+    ultra: 1
+  },
+  dlss: {
+    quality: 1.04,
+    balanced: 1.08,
+    performance: 1.14,
+    ultra: 1.2
+  },
+  fsr: {
+    quality: 1.03,
+    balanced: 1.06,
+    performance: 1.1,
+    ultra: 1.16
+  },
+  xess: {
+    quality: 1.025,
+    balanced: 1.055,
+    performance: 1.09,
+    ultra: 1.13
+  },
+  cas: {
+    quality: 1.01,
+    balanced: 1.01,
+    performance: 1.01,
+    ultra: 1.01
+  }
 };
 
 const storageKey = "warzoneuz-language";
@@ -472,7 +507,8 @@ const fpsControls = {
   ram: document.querySelector("#ram"),
   resolution: document.querySelector("#resolution"),
   graphics: document.querySelector("#graphics"),
-  dlss: document.querySelector("#dlss"),
+  upscaler: document.querySelector("#upscaler"),
+  upscalerPreset: document.querySelector("#upscaler-preset"),
   frameGeneration: document.querySelector("#frame-generation"),
   monitorHz: document.querySelector("#monitor-hz"),
   monitorSize: document.querySelector("#monitor-size")
@@ -488,6 +524,7 @@ const fpsMediumEl = document.querySelector("#fps-medium");
 const fpsHighEl = document.querySelector("#fps-high");
 const gpuVramEl = document.querySelector("#gpu-vram");
 const framegenWarningEl = document.querySelector("#framegen-warning");
+const upscalerNoteEl = document.querySelector("#upscaler-note");
 const loadoutStorageKey = "warzoneuz-loadouts";
 const loadoutControls = {
   category: document.querySelector("#weapon-category"),
@@ -781,12 +818,40 @@ function vramMultiplier(gpu, graphicsPreset) {
   return 1;
 }
 
-function dlssMultiplier(gpu) {
-  if (!gpu.dlss) {
+function gpuVendor(gpu) {
+  const value = gpu?.value || "";
+
+  if (value.startsWith("rx")) {
+    return "amd";
+  }
+
+  if (value.startsWith("rtx") || value.startsWith("gtx")) {
+    return "nvidia";
+  }
+
+  return "other";
+}
+
+function upscalerMultiplier(gpu) {
+  const upscaler = fpsControls.upscaler.value;
+  const preset = fpsControls.upscalerPreset.value;
+  const resolution = fpsControls.resolution.value;
+
+  if (upscaler === "dlss" && !gpu.dlss) {
     return 1;
   }
 
-  return dlssMultipliers[fpsControls.dlss.value] || 1;
+  let multiplier = upscalerMultipliers[upscaler]?.[preset] || 1;
+
+  if (upscaler === "xess" && gpuVendor(gpu) !== "intel") {
+    multiplier = Math.max(1, multiplier - 0.015);
+  }
+
+  if (preset === "ultra" && resolution !== "2160") {
+    multiplier = Math.max(1, multiplier - 0.025);
+  }
+
+  return multiplier;
 }
 
 function frameGenerationMultiplier(gpu) {
@@ -797,13 +862,92 @@ function frameGenerationMultiplier(gpu) {
   return fpsControls.device.value === "laptop" ? 1.34 : 1.42;
 }
 
+function upscalerNote() {
+  const upscaler = fpsControls.upscaler.value;
+  const preset = fpsControls.upscalerPreset.value;
+  const resolution = fpsControls.resolution.value;
+  const language = translations[currentLanguage] ? currentLanguage : "en";
+  const text = {
+    uz: {
+      native: "Native render: upscaler FPS bonusi yo'q.",
+      cas: "Native + CAS rasmni tiniqlashtiradi, FPS deyarli oshmaydi.",
+      ultra1080: "Ultra Performance 1080p'da rasmni ancha yumshoq ko'rsatishi mumkin.",
+      default: translations.uz.upscalerNote
+    },
+    ru: {
+      native: "Native render: bonusa FPS ot upscaler net.",
+      cas: "Native + CAS povyshaet chetkost, FPS pochti ne rastet.",
+      ultra1080: "Ultra Performance na 1080p mozhet silno smyagchit kartinku.",
+      default: translations.ru.upscalerNote
+    },
+    en: {
+      native: "Native render: no upscaler FPS bonus.",
+      cas: "Native + CAS improves clarity, with almost no FPS gain.",
+      ultra1080: "Ultra Performance at 1080p can make the image much softer.",
+      default: translations.en.upscalerNote
+    }
+  }[language];
+
+  if (upscaler === "native") {
+    return text.native;
+  }
+
+  if (upscaler === "cas") {
+    return text.cas;
+  }
+
+  if (preset === "ultra" && resolution === "1080") {
+    return text.ultra1080;
+  }
+
+  return text.default;
+}
+
+function setOptionDisabled(select, value, disabled) {
+  const option = select.querySelector(`option[value="${value}"]`);
+
+  if (option) {
+    option.disabled = disabled;
+  }
+}
+
+function updateFrameGenerationState() {
+  const gpu = selectedGpu();
+  const canUseDlss = Boolean(gpu?.dlss);
+  const canUseFrameGen = Boolean(gpu?.frameGen);
+
+  setOptionDisabled(fpsControls.upscaler, "dlss", !canUseDlss);
+
+  if (!canUseDlss && fpsControls.upscaler.value === "dlss") {
+    fpsControls.upscaler.value = "native";
+  }
+
+  fpsControls.upscalerPreset.disabled = fpsControls.upscaler.value === "native" || fpsControls.upscaler.value === "cas";
+
+  fpsControls.frameGeneration.disabled = !canUseFrameGen;
+
+  if (!canUseFrameGen) {
+    fpsControls.frameGeneration.value = "off";
+  }
+
+  if (gpuVramEl) {
+    gpuVramEl.textContent = `${gpu.vram}GB`;
+  }
+
+  framegenWarningEl.classList.toggle("is-visible", !canUseFrameGen);
+
+  if (upscalerNoteEl) {
+    upscalerNoteEl.textContent = upscalerNote();
+  }
+}
+
 function estimateFps(graphicsPreset) {
   const gpu = selectedGpu();
   const cpu = selectedCpu();
   const graphicsMultiplier = graphicsMultipliers[graphicsPreset] || 1;
   const deviceMultiplier = fpsControls.device.value === "laptop" ? 0.94 : 1;
 
-  return gpu.base * cpu.multiplier * ramMultiplier() * vramMultiplier(gpu, graphicsPreset) * resolutionMultiplier() * graphicsMultiplier * dlssMultiplier(gpu) * deviceMultiplier;
+  return gpu.base * cpu.multiplier * ramMultiplier() * vramMultiplier(gpu, graphicsPreset) * resolutionMultiplier() * graphicsMultiplier * upscalerMultiplier(gpu) * deviceMultiplier;
 }
 
 function estimateDisplayedFps(realFps) {
@@ -921,30 +1065,6 @@ function monitorClarityNote() {
   return text.default;
 }
 
-function updateFrameGenerationState() {
-  const gpu = selectedGpu();
-  const canUseFrameGen = Boolean(gpu?.frameGen);
-  const canUseDlss = Boolean(gpu?.dlss);
-
-  fpsControls.frameGeneration.disabled = !canUseFrameGen;
-
-  if (!canUseFrameGen) {
-    fpsControls.frameGeneration.value = "off";
-  }
-
-  fpsControls.dlss.disabled = !canUseDlss;
-
-  if (!canUseDlss) {
-    fpsControls.dlss.value = "off";
-  }
-
-  if (gpuVramEl) {
-    gpuVramEl.textContent = `${gpu.vram}GB`;
-  }
-
-  framegenWarningEl.classList.toggle("is-visible", !canUseFrameGen);
-}
-
 function updateFpsEstimate() {
   updateFrameGenerationState();
 
@@ -966,7 +1086,6 @@ function updateFpsEstimate() {
   fpsMediumEl.textContent = formatRange(mediumValue);
   fpsHighEl.textContent = formatRange(highValue);
 }
-
 function getAttachments() {
   return attachmentInputs
     .map((input) => ({ slot: input.dataset.attachment, value: input.value.trim() }))

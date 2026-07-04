@@ -255,12 +255,22 @@
               </select>
             </label>
             <label>
-              <span>DLSS</span>
-              <select id="dlss">
-                <option value="off">Off</option>
+              <span data-i18n="upscaler">Upscaler</span>
+              <select id="upscaler">
+                <option value="native">Native / Off</option>
+                <option value="dlss">NVIDIA DLSS</option>
+                <option value="fsr">AMD FSR</option>
+                <option value="xess">Intel XeSS</option>
+                <option value="cas">Native + Sharpening / CAS</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="upscalerPreset">Upscaler Preset</span>
+              <select id="upscaler-preset">
                 <option value="quality">Quality</option>
-                <option value="balanced">Balanced</option>
+                <option value="balanced" selected>Balanced</option>
                 <option value="performance">Performance</option>
+                <option value="ultra">Ultra Performance</option>
               </select>
             </label>
             <label>
@@ -299,6 +309,7 @@
           <p class="monitor-note" id="monitor-note">Good match.</p>
           <p class="monitor-note" id="monitor-clarity-note">27 inch + 1440p is very good.</p>
           <p class="sim-warning" id="framegen-warning" data-i18n="framegenWarning">Frame Generation works only on RTX 40/50 series GPUs.</p>
+          <p class="sim-note" id="upscaler-note" data-i18n="upscalerNote">Upscaler boosts FPS, but lower presets can make the image look softer.</p>
           <p class="sim-note" id="framegen-note" data-i18n="framegenNote">Frame Generation is displayed FPS, not real input FPS.</p>
           <p class="sim-note" data-i18n="peakNote">Peak FPS can be higher in lighter scenes; the main result is average Real FPS.</p>
           <p class="sim-disclaimer" data-i18n="fpsDisclaimer">This is an estimate, real FPS depends on map, driver, settings, laptop power limit and temperature.</p>
