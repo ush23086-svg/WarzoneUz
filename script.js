@@ -42,7 +42,7 @@ const translations = {
     estimatedFps: "Estimated FPS",
     realFps: "Real FPS",
     displayedFps: "With Frame Generation",
-    visibleSmoothness: "Visible Smoothness / Displayed",
+    visibleSmoothness: "Visible FPS / Monitor ko‘rsatadigan FPS",
     framegenWarning: "Frame Generation faqat RTX 40/50 series GPUlarda ishlaydi.",
     framegenNote: "Frame Generation displayed FPS, real input FPS emas.",
     peakNote: "Peak FPS yengil joylarda bundan yuqori bo‘lishi mumkin; asosiy natija average Real FPS.",
@@ -146,7 +146,7 @@ const translations = {
     estimatedFps: "Примерный FPS",
     realFps: "Реальный FPS",
     displayedFps: "С Frame Generation",
-    visibleSmoothness: "Видимая плавность / монитор",
+    visibleSmoothness: "Visible FPS / монитор",
     framegenWarning: "Frame Generation работает только на RTX 40/50 series GPU.",
     framegenNote: "Frame Generation показывает displayed FPS, а не реальный input FPS.",
     peakNote: "Peak FPS в лёгких сценах может быть выше; главный показатель здесь average Real FPS.",
@@ -250,7 +250,7 @@ const translations = {
     estimatedFps: "Estimated FPS",
     realFps: "Real FPS",
     displayedFps: "With Frame Generation",
-    visibleSmoothness: "Visible Smoothness / Displayed",
+    visibleSmoothness: "Visible FPS / Displayed by monitor",
     framegenWarning: "Frame Generation works only on RTX 40/50 series GPUs.",
     framegenNote: "Frame Generation is displayed FPS, not real input FPS.",
     peakNote: "Peak FPS can be higher in lighter scenes; the main result is average Real FPS.",
@@ -816,7 +816,7 @@ function monitorSmoothness(realFps) {
   const language = translations[currentLanguage] ? currentLanguage : "en";
   const text = {
     uz: {
-      cap: `FPS yuqori, lekin monitor faqat ${hz}Hz ko‘rsatadi. Input delay baribir yaxshi bo‘lishi mumkin.`,
+      cap: `FPS yuqori, lekin monitor faqat ${hz}Hz ko‘rsatadi.`,
       good: "Yaxshi moslik.",
       close: `Yaxshi moslik, lekin ${hz}Hz to‘liq ishlashi uchun yana FPS kerak.`,
       low: "Monitor to‘liq ishlamayapti, FPS yetmayapti.",
@@ -825,7 +825,7 @@ function monitorSmoothness(realFps) {
       lowLabel: "FPS yetmayapti"
     },
     ru: {
-      cap: `FPS выше, но монитор показывает только ${hz}Hz. Input delay всё равно может быть хорошим.`,
+      cap: `FPS выше, но монитор показывает только ${hz}Hz.`,
       good: "Хорошее совпадение.",
       close: `Хорошее совпадение, но для полного ${hz}Hz нужно ещё немного FPS.`,
       low: "Монитор не раскрывается полностью, FPS не хватает.",
@@ -834,7 +834,7 @@ function monitorSmoothness(realFps) {
       lowLabel: "FPS не хватает"
     },
     en: {
-      cap: `FPS is higher, but the monitor only shows ${hz}Hz. Input delay can still feel good.`,
+      cap: `FPS is higher, but the monitor only shows ${hz}Hz.`,
       good: "Good match.",
       close: `Good match, but full ${hz}Hz still needs more FPS.`,
       low: "The monitor is not fully used because FPS is too low.",
@@ -873,29 +873,32 @@ function monitorClarityNote() {
   const language = translations[currentLanguage] ? currentLanguage : "en";
   const text = {
     uz: {
-      good24: "24 inch + 1080p + 144/165Hz: yaxshi.",
-      soft27: "27 inch + 1080p: biroz hira.",
-      great27: "27 inch + 1440p + 144/165/240Hz: juda yaxshi.",
-      clear32: "32 inch + 4K + 144Hz+: juda tiniq, lekin kuchli GPU kerak.",
+      good24: "24 inch + 1080p: normal.",
+      soft27: "27 inch + 1080p: biroz hira, 1440p tavsiya.",
+      great27: "27 inch + 1440p: juda yaxshi.",
+      normal32: "32 inch + 1440p: normal.",
+      clear32: "32 inch + 4K: juda tiniq.",
       default: "Monitor tanlovi FPS, resolution va ekran o‘lchamiga qarab baholanadi."
     },
     ru: {
-      good24: "24 inch + 1080p + 144/165Hz: хорошо.",
-      soft27: "27 inch + 1080p: немного мыльно.",
-      great27: "27 inch + 1440p + 144/165/240Hz: очень хорошо.",
-      clear32: "32 inch + 4K + 144Hz+: очень чётко, но нужна мощная GPU.",
+      good24: "24 inch + 1080p: нормально.",
+      soft27: "27 inch + 1080p: немного мыльно, лучше 1440p.",
+      great27: "27 inch + 1440p: очень хорошо.",
+      normal32: "32 inch + 1440p: нормально.",
+      clear32: "32 inch + 4K: очень чётко.",
       default: "Монитор оценивается по FPS, разрешению и размеру экрана."
     },
     en: {
-      good24: "24 inch + 1080p + 144/165Hz: good.",
-      soft27: "27 inch + 1080p: a bit soft.",
-      great27: "27 inch + 1440p + 144/165/240Hz: very good.",
-      clear32: "32 inch + 4K + 144Hz+: very sharp, but it needs a strong GPU.",
+      good24: "24 inch + 1080p: normal.",
+      soft27: "27 inch + 1080p: a bit soft, 1440p recommended.",
+      great27: "27 inch + 1440p: very good.",
+      normal32: "32 inch + 1440p: normal.",
+      clear32: "32 inch + 4K: very sharp.",
       default: "Monitor fit depends on FPS, resolution and screen size."
     }
   }[language];
 
-  if (size === "24" && resolution === "1080" && (hz === 144 || hz === 165)) {
+  if (size === "24" && resolution === "1080") {
     return text.good24;
   }
 
@@ -903,11 +906,15 @@ function monitorClarityNote() {
     return text.soft27;
   }
 
-  if (size === "27" && resolution === "1440" && [144, 165, 240].includes(hz)) {
+  if (size === "27" && resolution === "1440") {
     return text.great27;
   }
 
-  if (size === "32" && resolution === "2160" && hz >= 144) {
+  if (size === "32" && resolution === "1440") {
+    return text.normal32;
+  }
+
+  if (size === "32" && resolution === "2160") {
     return text.clear32;
   }
 
